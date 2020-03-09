@@ -11,9 +11,18 @@ import java.awt.*;
  * @Description:
  */
 public class Tank {
+    /**
+     * 坦克坐标
+     */
     private int x,y;
+    /**
+     * 坦克方向
+     */
     private DirectionEnum dir = DirectionEnum.DOWN;
-
+    /**
+     * 坦克是否移动
+     */
+    private boolean moving = false;
     public Tank(int x, int y, DirectionEnum dir) {
         this.x = x;
         this.y = y;
@@ -29,6 +38,9 @@ public class Tank {
      * 坦克移动
      */
     private void move(){
+        if(!moving){
+            return;
+        }
         switch (dir) {
             case LFFT:
                 x -= ConstantCommand.SPEED;
@@ -49,5 +61,9 @@ public class Tank {
 
     public void setDir(DirectionEnum dir) {
         this.dir = dir;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
     }
 }

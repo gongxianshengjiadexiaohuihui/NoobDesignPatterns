@@ -16,7 +16,8 @@ import java.awt.event.WindowEvent;
  * @Description:
  */
 public class TankFrame extends Frame {
-    Tank  myTank = new Tank(200,200,DirectionEnum.DOWN);
+    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN);
+
     public TankFrame() {
         /**
          * 页面属性
@@ -39,7 +40,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-          myTank.paint(g);
+        myTank.paint(g);
     }
 
     /**
@@ -99,8 +100,19 @@ public class TankFrame extends Frame {
         }
 
         private void setDirection() {
+            /**
+             * 判断是否移动
+             */
+            if (isL && !isR && !isU && isD) {
+                myTank.setMoving(false);
+            } else {
+                myTank.setMoving(true);
+            }
+            /**
+             * 判断方向
+             */
             if (isL) {
-               myTank.setDir(DirectionEnum.LFFT);
+                myTank.setDir(DirectionEnum.LFFT);
             }
             if (isR) {
                 myTank.setDir(DirectionEnum.RIGHT);
@@ -111,6 +123,7 @@ public class TankFrame extends Frame {
             if (isD) {
                 myTank.setDir(DirectionEnum.DOWN);
             }
+
         }
     }
 
