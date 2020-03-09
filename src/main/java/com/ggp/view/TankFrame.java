@@ -10,6 +10,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author:GGP
@@ -43,6 +45,26 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         myTank.paint(g);
         bullet.paint(g);
+    }
+
+    /**
+     * 双缓冲解决闪烁问题
+     * 闪烁问题，画图比较慢小于屏幕的刷新率
+     * 在内存中先生成一张图片，把内容画在图片上，画完之后在画到屏幕上
+     */
+    Image image = null;
+    @Override
+    public void update(Graphics g){
+        if(null == image){
+            image = this.createImage(ConstantCommand.GAME_WIDTH,ConstantCommand.GAME_HEIGHT);
+        }
+        Graphics screen = image.getGraphics();
+        Color color = screen.getColor();
+        screen.setColor(Color.BLACK);
+        screen.fillRect(0,0,ConstantCommand.GAME_WIDTH,ConstantCommand.GAME_HEIGHT);
+        screen.setColor(color);
+        paint(screen);
+        g.drawImage(image,0,0,null);
     }
 
     /**
