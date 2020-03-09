@@ -2,6 +2,7 @@ package com.ggp.organ;
 
 import com.ggp.common.ConstantCommand;
 import com.ggp.common.DirectionEnum;
+import com.ggp.view.TankFrame;
 
 import java.awt.*;
 
@@ -23,10 +24,15 @@ public class Tank {
      * 坦克是否移动
      */
     private boolean moving = false;
-    public Tank(int x, int y, DirectionEnum dir) {
+    /**
+     * 持有tankFrame的对象
+     */
+    private TankFrame tankFrame;
+    public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tankFrame = tankFrame;
     }
 
     public void paint(Graphics g) {
@@ -61,7 +67,9 @@ public class Tank {
                 break;
         }
     }
-
+    public void  fire() {
+        tankFrame.getBullets().add(new Bullet(this.x,this.y,this.dir));
+    }
     public void setDir(DirectionEnum dir) {
         this.dir = dir;
     }
@@ -69,4 +77,6 @@ public class Tank {
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
+
+
 }

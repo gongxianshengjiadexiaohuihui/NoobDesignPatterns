@@ -19,8 +19,11 @@ import java.util.List;
  * @Description:
  */
 public class TankFrame extends Frame {
-    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN);
-    Bullet bullet = new Bullet(250,250,DirectionEnum.DOWN);
+    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN,this);
+    /**
+     * 所有子弹
+     */
+    List<Bullet> bullets = new ArrayList<>();
     public TankFrame() {
         /**
          * 页面属性
@@ -44,7 +47,9 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
-        bullet.paint(g);
+        for(Bullet bullet:bullets){
+            bullet.paint(g);
+        }
     }
 
     /**
@@ -117,6 +122,8 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     isD = false;
                     break;
+                case KeyEvent.VK_CONTROL:
+                    myTank.fire();
                 default:
                     break;
             }
@@ -151,4 +158,7 @@ public class TankFrame extends Frame {
         }
     }
 
+    public List<Bullet> getBullets() {
+        return bullets;
+    }
 }
