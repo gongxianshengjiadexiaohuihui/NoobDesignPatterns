@@ -103,7 +103,7 @@ public class TankFrame extends Frame {
             /**
              * 判断是否移动
              */
-            if (isL && !isR && !isU && isD) {
+            if (!isL && !isR && !isU && !isD) {
                 myTank.setMoving(false);
             } else {
                 myTank.setMoving(true);
