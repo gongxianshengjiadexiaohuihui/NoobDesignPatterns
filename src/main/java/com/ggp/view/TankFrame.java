@@ -1,6 +1,7 @@
 package com.ggp.view;
 
-import com.ggp.common.Constant_command;
+import com.ggp.common.ConstantCommand;
+import com.ggp.common.DirectionEnum;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -36,8 +37,30 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        g.fillRect(Constant_command.ENEMY_X, Constant_command.ENEMY_Y, 50, 50);
-        Constant_command.ENEMY_X += 10;
+        g.fillRect(ConstantCommand.ENEMY_X, ConstantCommand.ENEMY_Y, 50, 50);
+        enemy_move();
+    }
+
+    /**
+     * 敌方坦克移动
+     */
+    private void enemy_move(){
+        switch (ConstantCommand.ENEMY_DIR) {
+            case LFFT:
+                ConstantCommand.ENEMY_X -= ConstantCommand.SPEED;
+                break;
+            case RIGHT:
+                ConstantCommand.ENEMY_X += ConstantCommand.SPEED;
+                break;
+            case UP:
+                ConstantCommand.ENEMY_Y -= ConstantCommand.SPEED;
+                break;
+            case DOWN:
+                ConstantCommand.ENEMY_Y += ConstantCommand.SPEED;
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -51,6 +74,7 @@ public class TankFrame extends Frame {
         boolean isR = false;
         boolean isU = false;
         boolean isD = false;
+
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
@@ -70,6 +94,7 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            setDirection();
         }
 
         @Override
@@ -91,6 +116,23 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            setDirection();
+        }
+
+        private void setDirection() {
+            if (isL) {
+                ConstantCommand.ENEMY_DIR = DirectionEnum.LFFT;
+            }
+            if (isR) {
+                ConstantCommand.ENEMY_DIR = DirectionEnum.RIGHT;
+            }
+            if (isU) {
+                ConstantCommand.ENEMY_DIR = DirectionEnum.UP;
+            }
+            if (isD) {
+                ConstantCommand.ENEMY_DIR = DirectionEnum.DOWN;
+            }
         }
     }
+
 }

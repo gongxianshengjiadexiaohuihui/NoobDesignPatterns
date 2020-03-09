@@ -12,7 +12,7 @@ public class StartUp {
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
         while (true){
-            Thread.sleep(1000);
+            Thread.sleep(100);
             tankFrame.repaint();
         }
     }
