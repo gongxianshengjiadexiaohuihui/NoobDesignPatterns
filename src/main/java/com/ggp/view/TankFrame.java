@@ -2,6 +2,7 @@ package com.ggp.view;
 
 import com.ggp.common.ConstantCommand;
 import com.ggp.common.DirectionEnum;
+import com.ggp.organ.Bullet;
 import com.ggp.organ.Tank;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ import java.awt.event.WindowEvent;
  */
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, DirectionEnum.DOWN);
-
+    Bullet bullet = new Bullet(250,250,DirectionEnum.DOWN);
     public TankFrame() {
         /**
          * 页面属性
@@ -41,6 +42,7 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
+        bullet.paint(g);
     }
 
     /**

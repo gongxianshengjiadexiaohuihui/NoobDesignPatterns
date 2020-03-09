@@ -18,7 +18,7 @@ public class Tank {
     /**
      * 坦克方向
      */
-    private DirectionEnum dir = DirectionEnum.DOWN;
+    private DirectionEnum dir;
     /**
      * 坦克是否移动
      */
@@ -43,16 +43,16 @@ public class Tank {
         }
         switch (dir) {
             case LFFT:
-                x -= ConstantCommand.SPEED;
+                x -= ConstantCommand.TANK_SPEED;
                 break;
             case RIGHT:
-                x += ConstantCommand.SPEED;
+                x += ConstantCommand.TANK_SPEED;
                 break;
             case UP:
-                y -= ConstantCommand.SPEED;
+                y -= ConstantCommand.TANK_SPEED;
                 break;
             case DOWN:
-                y += ConstantCommand.SPEED;
+                y += ConstantCommand.TANK_SPEED;
                 break;
             default:
                 break;
