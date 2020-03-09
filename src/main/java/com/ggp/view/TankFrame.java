@@ -2,6 +2,7 @@ package com.ggp.view;
 
 import com.ggp.common.ConstantCommand;
 import com.ggp.common.DirectionEnum;
+import com.ggp.organ.Tank;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
  * @Description:
  */
 public class TankFrame extends Frame {
+    Tank  myTank = new Tank(200,200,DirectionEnum.DOWN);
     public TankFrame() {
         /**
          * 页面属性
@@ -37,30 +39,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        g.fillRect(ConstantCommand.ENEMY_X, ConstantCommand.ENEMY_Y, 50, 50);
-        enemy_move();
-    }
-
-    /**
-     * 敌方坦克移动
-     */
-    private void enemy_move(){
-        switch (ConstantCommand.ENEMY_DIR) {
-            case LFFT:
-                ConstantCommand.ENEMY_X -= ConstantCommand.SPEED;
-                break;
-            case RIGHT:
-                ConstantCommand.ENEMY_X += ConstantCommand.SPEED;
-                break;
-            case UP:
-                ConstantCommand.ENEMY_Y -= ConstantCommand.SPEED;
-                break;
-            case DOWN:
-                ConstantCommand.ENEMY_Y += ConstantCommand.SPEED;
-                break;
-            default:
-                break;
-        }
+          myTank.paint(g);
     }
 
     /**
@@ -121,16 +100,16 @@ public class TankFrame extends Frame {
 
         private void setDirection() {
             if (isL) {
-                ConstantCommand.ENEMY_DIR = DirectionEnum.LFFT;
+               myTank.setDir(DirectionEnum.LFFT);
             }
             if (isR) {
-                ConstantCommand.ENEMY_DIR = DirectionEnum.RIGHT;
+                myTank.setDir(DirectionEnum.RIGHT);
             }
             if (isU) {
-                ConstantCommand.ENEMY_DIR = DirectionEnum.UP;
+                myTank.setDir(DirectionEnum.UP);
             }
             if (isD) {
-                ConstantCommand.ENEMY_DIR = DirectionEnum.DOWN;
+                myTank.setDir(DirectionEnum.DOWN);
             }
         }
     }
