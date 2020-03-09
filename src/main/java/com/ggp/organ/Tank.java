@@ -68,7 +68,7 @@ public class Tank {
         }
     }
     public void  fire() {
-        tankFrame.getBullets().add(new Bullet(this.x,this.y,this.dir));
+        tankFrame.getBullets().add(new Bullet(this.x,this.y,this.dir,this.tankFrame));
     }
     public void setDir(DirectionEnum dir) {
         this.dir = dir;

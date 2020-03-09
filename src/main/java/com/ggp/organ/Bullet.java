@@ -2,6 +2,7 @@ package com.ggp.organ;
 
 import com.ggp.common.ConstantCommand;
 import com.ggp.common.DirectionEnum;
+import com.ggp.view.TankFrame;
 
 import java.awt.*;
 
@@ -11,17 +12,36 @@ import java.awt.*;
  * @Description:
  */
 public class Bullet {
+    /**
+     * 子弹坐标
+     */
     private int x,y;
+    /**
+     * 子弹方向
+     */
     private DirectionEnum dir;
-
+    /**
+     * 子弹半径
+     */
     private static final int r = 30;
-
-    public Bullet(int x, int y, DirectionEnum dir) {
+    /**
+     * 子弹是否存活
+     */
+    private boolean live = true;
+    /**
+     * 持有主界面对象
+     */
+    private TankFrame tankFrame;
+    public Bullet(int x, int y, DirectionEnum dir,TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tankFrame = tankFrame;
     }
     public void paint(Graphics g){
+        if(!live){
+            this.tankFrame.getBullets().remove(this);
+        }
         Color color = g.getColor();
         g.setColor(Color.RED);
         g.fillOval(x,y,r,r);
@@ -50,6 +70,9 @@ public class Bullet {
                 break;
             default:
                 break;
+        }
+        if(x<0 || y < 0 || x>ConstantCommand.GAME_WIDTH||y<ConstantCommand.GAME_HEIGHT){
+            live = false;
         }
     }
 }

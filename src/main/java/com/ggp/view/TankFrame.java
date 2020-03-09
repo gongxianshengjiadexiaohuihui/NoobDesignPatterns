@@ -47,8 +47,8 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
-        for(Bullet bullet:bullets){
-            bullet.paint(g);
+        for (int i = 0; i <bullets.size() ; i++) {
+            bullets.get(i).paint(g);
         }
     }
 
