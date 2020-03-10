@@ -2,6 +2,7 @@ package com.ggp.view;
 
 import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
+import com.ggp.common.Group;
 import com.ggp.organ.Bullet;
 import com.ggp.organ.Tank;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * @Description:
  */
 public class TankFrame extends Frame {
-    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN,this);
+    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN,this,Group.RED);
     /**
      * 所有子弹
      */

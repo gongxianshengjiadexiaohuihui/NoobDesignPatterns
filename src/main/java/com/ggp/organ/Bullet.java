@@ -2,6 +2,7 @@ package com.ggp.organ;
 
 import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
+import com.ggp.common.Group;
 import com.ggp.common.SourceManager;
 import com.ggp.view.TankFrame;
 
@@ -30,17 +31,22 @@ public class Bullet {
      */
     private TankFrame tankFrame;
     /**
+     * 子弹属于那方
+     */
+    private Group group = Group.BLUE;
+    /**
      * 子弹的宽高
      */
     public static Integer weight = SourceManager.bulletD.getWidth();
     public static Integer height = SourceManager.bulletD.getHeight();
 
 
-    public Bullet(int x, int y, DirectionEnum dir, TankFrame tankFrame) {
+    public Bullet(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tankFrame = tankFrame;
+        this.group = group;
     }
 
     public void paint(Graphics g) {
@@ -99,6 +105,9 @@ public class Bullet {
          * 判断子弹是否击中坦克
          */
         for (Tank tank: tankFrame.getEnemyTanks()) {
+            if(tank.getGroup() == this.group){
+                continue;
+            }
             if(new Rectangle(this.x,this.y,weight,height).intersects(new Rectangle(tank.getX(),tank.getY(),Tank.weight,Tank.height))){
                 tank.die();
                 this.die();
@@ -123,5 +132,13 @@ public class Bullet {
 
     public void die() {
         living =false;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

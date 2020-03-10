@@ -2,10 +2,12 @@ package com.ggp.organ;
 
 import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
+import com.ggp.common.Group;
 import com.ggp.common.SourceManager;
 import com.ggp.view.TankFrame;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * @Author:GGP
@@ -24,7 +26,7 @@ public class Tank {
     /**
      * 坦克是否移动
      */
-    private boolean moving = false;
+    private boolean moving = true;
     /**
      * 坦克是否存活
      */
@@ -34,16 +36,23 @@ public class Tank {
      */
     private TankFrame tankFrame;
     /**
+     * 属于那方,默认蓝方
+     */
+    private Group group = Group.BLUE;
+
+    private Random random=new Random();
+    /**
      * 坦克宽高
      */
     public static Integer weight = SourceManager.tankD.getWidth();
     public static Integer height = SourceManager.tankD.getHeight();
 
-    public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame) {
+    public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame,Group  group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tankFrame = tankFrame;
+        this.group=group;
     }
 
     public void paint(Graphics g) {
@@ -92,6 +101,9 @@ public class Tank {
             default:
                 break;
         }
+        if(random.nextInt(10) > 8){
+            this.fire();
+        }
     }
 
 
@@ -129,7 +141,7 @@ public class Tank {
                 break;
         }
 
-        tankFrame.getBullets().add(new Bullet(bulletX, bulletY, this.dir, this.tankFrame));
+        tankFrame.getBullets().add(new Bullet(bulletX, bulletY, this.dir, this.tankFrame,this.group));
     }
 
     public void setDir(DirectionEnum dir) {
@@ -154,5 +166,13 @@ public class Tank {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
