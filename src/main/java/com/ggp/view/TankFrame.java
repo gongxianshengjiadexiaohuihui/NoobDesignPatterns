@@ -64,6 +64,24 @@ public class TankFrame extends Frame {
         for (int i = 0; i <enemyTanks.size() ; i++) {
             enemyTanks.get(i).paint(g);
         }
+
+        for (int i = 0; i <bullets.size() ; i++) {
+            for (int j = 0; j < enemyTanks.size() ; j++) {
+                check(enemyTanks.get(j),bullets.get(i));
+                }
+            }
+    }
+    public void check(Tank tank,Bullet bullet){
+        /**
+         * 判断子弹是否击中坦克
+         */
+        if(tank.getGroup() == bullet.getGroup()){
+            return;
+        }
+        if(new Rectangle(tank.getX(),tank.getY(),Tank.weight,Tank.height).intersects(new Rectangle(bullet.getX(),bullet.getY(),Bullet.weight,Bullet.height))){
+            bullet.die();
+            tank.die();
+        }
     }
 
     /**

@@ -101,18 +101,7 @@ public class Bullet {
         if (x < 0 || y < 0 || x > Constant.GAME_WIDTH || y > Constant.GAME_HEIGHT) {
             living = false;
         }
-        /**
-         * 判断子弹是否击中坦克
-         */
-        for (Tank tank: tankFrame.getEnemyTanks()) {
-            if(tank.getGroup() == this.group){
-                continue;
-            }
-            if(new Rectangle(this.x,this.y,weight,height).intersects(new Rectangle(tank.getX(),tank.getY(),Tank.weight,Tank.height))){
-                tank.die();
-                this.die();
-            }
-        }
+
     }
     public int getX() {
         return x;
