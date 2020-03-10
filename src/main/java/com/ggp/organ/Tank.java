@@ -26,6 +26,10 @@ public class Tank {
      */
     private boolean moving = false;
     /**
+     * 坦克是否存活
+     */
+    private boolean living = true;
+    /**
      * 持有tankFrame的对象
      */
     private TankFrame tankFrame;
@@ -43,6 +47,9 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
+        if(!living){
+            this.tankFrame.getEnemyTanks().remove(this);
+        }
         switch (dir) {
             case LFFT:
                 g.drawImage(SourceManager.tankL, x, y, null);
@@ -87,6 +94,12 @@ public class Tank {
         }
     }
 
+
+
+    public void die() {
+        living=false;
+    }
+
     /**
      * 发射子弹
      */
@@ -127,5 +140,19 @@ public class Tank {
         this.moving = moving;
     }
 
+    public int getX() {
+        return x;
+    }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

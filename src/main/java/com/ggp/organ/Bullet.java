@@ -22,13 +22,9 @@ public class Bullet {
      */
     private DirectionEnum dir;
     /**
-     * 子弹半径
-     */
-    private static final int r = 30;
-    /**
      * 子弹是否存活
      */
-    private boolean live = true;
+    private boolean living = true;
     /**
      * 持有主界面对象
      */
@@ -48,7 +44,7 @@ public class Bullet {
     }
 
     public void paint(Graphics g) {
-        if (!live) {
+        if (!living) {
             this.tankFrame.getBullets().remove(this);
         }
         switch (dir) {
@@ -90,11 +86,42 @@ public class Bullet {
             default:
                 break;
         }
+       check();
+    }
+    private void check(){
         /**
          * 边界值
          */
         if (x < 0 || y < 0 || x > Constant.GAME_WIDTH || y > Constant.GAME_HEIGHT) {
-            live = false;
+            living = false;
         }
+        /**
+         * 判断子弹是否击中坦克
+         */
+        for (Tank tank: tankFrame.getEnemyTanks()) {
+            if(new Rectangle(this.x,this.y,weight,height).intersects(new Rectangle(tank.getX(),tank.getY(),Tank.weight,Tank.height))){
+                tank.die();
+                this.die();
+            }
+        }
+    }
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void die() {
+        living =false;
     }
 }
