@@ -1,6 +1,6 @@
 package com.ggp.organ;
 
-import com.ggp.common.ConstantCommand;
+import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.SourceManager;
 import com.ggp.view.TankFrame;
@@ -71,16 +71,16 @@ public class Tank {
         }
         switch (dir) {
             case LFFT:
-                x -= ConstantCommand.TANK_SPEED;
+                x -= Constant.TANK_SPEED;
                 break;
             case RIGHT:
-                x += ConstantCommand.TANK_SPEED;
+                x += Constant.TANK_SPEED;
                 break;
             case UP:
-                y -= ConstantCommand.TANK_SPEED;
+                y -= Constant.TANK_SPEED;
                 break;
             case DOWN:
-                y += ConstantCommand.TANK_SPEED;
+                y += Constant.TANK_SPEED;
                 break;
             default:
                 break;

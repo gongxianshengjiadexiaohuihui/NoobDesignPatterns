@@ -1,6 +1,6 @@
 package com.ggp.view;
 
-import com.ggp.common.ConstantCommand;
+import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
 import com.ggp.organ.Bullet;
 import com.ggp.organ.Tank;
@@ -24,11 +24,15 @@ public class TankFrame extends Frame {
      * 所有子弹
      */
     List<Bullet> bullets = new ArrayList<>();
+    /**
+     * 敌方坦克
+     */
+    List<Tank> enemyTanks= new ArrayList<>();
     public TankFrame() {
         /**
          * 页面属性
          */
-        this.setSize(ConstantCommand.GAME_WIDTH, ConstantCommand.GAME_HEIGHT);
+        this.setSize(Constant.GAME_WIDTH, Constant.GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("Tank war");
         this.setVisible(true);
@@ -47,8 +51,17 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
+        /**
+         * 画子弹
+         */
         for (int i = 0; i <bullets.size() ; i++) {
             bullets.get(i).paint(g);
+        }
+        /**
+         * 画敌方坦克
+         */
+        for (int i = 0; i <enemyTanks.size() ; i++) {
+            enemyTanks.get(i).paint(g);
         }
     }
 
@@ -61,12 +74,12 @@ public class TankFrame extends Frame {
     @Override
     public void update(Graphics g){
         if(null == image){
-            image = this.createImage(ConstantCommand.GAME_WIDTH,ConstantCommand.GAME_HEIGHT);
+            image = this.createImage(Constant.GAME_WIDTH,Constant.GAME_HEIGHT);
         }
         Graphics screen = image.getGraphics();
         Color color = screen.getColor();
         screen.setColor(Color.BLACK);
-        screen.fillRect(0,0,ConstantCommand.GAME_WIDTH,ConstantCommand.GAME_HEIGHT);
+        screen.fillRect(0,0,Constant.GAME_WIDTH,Constant.GAME_HEIGHT);
         screen.setColor(color);
         paint(screen);
         g.drawImage(image,0,0,null);
@@ -160,5 +173,9 @@ public class TankFrame extends Frame {
 
     public List<Bullet> getBullets() {
         return bullets;
+    }
+
+    public List<Tank> getEnemyTanks() {
+        return enemyTanks;
     }
 }

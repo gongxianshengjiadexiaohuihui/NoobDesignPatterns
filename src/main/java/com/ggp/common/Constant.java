@@ -5,7 +5,7 @@ package com.ggp.common;
  * @Date:2020/3/9 19:51
  * @Description:
  */
-public class ConstantCommand {
+public class Constant {
     /**
      * 游戏界面长度
      */
@@ -22,5 +22,7 @@ public class ConstantCommand {
      * 子弹速度
      */
     public static final Integer BULLET_SPEED =10;
+
+    public static final Integer ENEMY_COUNT=5;
 }
 

@@ -1,6 +1,6 @@
 package com.ggp.organ;
 
-import com.ggp.common.ConstantCommand;
+import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.SourceManager;
 import com.ggp.view.TankFrame;
@@ -76,16 +76,16 @@ public class Bullet {
     private void move() {
         switch (dir) {
             case LFFT:
-                x -= ConstantCommand.BULLET_SPEED;
+                x -= Constant.BULLET_SPEED;
                 break;
             case RIGHT:
-                x += ConstantCommand.BULLET_SPEED;
+                x += Constant.BULLET_SPEED;
                 break;
             case UP:
-                y -= ConstantCommand.BULLET_SPEED;
+                y -= Constant.BULLET_SPEED;
                 break;
             case DOWN:
-                y += ConstantCommand.BULLET_SPEED;
+                y += Constant.BULLET_SPEED;
                 break;
             default:
                 break;
@@ -93,7 +93,7 @@ public class Bullet {
         /**
          * 边界值
          */
-        if (x < 0 || y < 0 || x > ConstantCommand.GAME_WIDTH || y > ConstantCommand.GAME_HEIGHT) {
+        if (x < 0 || y < 0 || x > Constant.GAME_WIDTH || y > Constant.GAME_HEIGHT) {
             live = false;
         }
     }
