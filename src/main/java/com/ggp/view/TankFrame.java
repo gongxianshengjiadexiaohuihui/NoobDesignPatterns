@@ -4,6 +4,7 @@ import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.Group;
 import com.ggp.organ.Bullet;
+import com.ggp.organ.Explode;
 import com.ggp.organ.Tank;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ import java.util.List;
  * @Description:
  */
 public class TankFrame extends Frame {
-    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN,this,Group.RED);
+    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN, this, Group.RED);
     /**
      * 所有子弹
      */
@@ -28,7 +29,9 @@ public class TankFrame extends Frame {
     /**
      * 敌方坦克
      */
-    List<Tank> enemyTanks= new ArrayList<>();
+    List<Tank> enemyTanks = new ArrayList<>();
+    Explode  explode = new Explode(300,300,this);
+
     public TankFrame() {
         /**
          * 页面属性
@@ -55,30 +58,37 @@ public class TankFrame extends Frame {
         /**
          * 画子弹
          */
-        for (int i = 0; i <bullets.size() ; i++) {
+        for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
         /**
          * 画敌方坦克
          */
-        for (int i = 0; i <enemyTanks.size() ; i++) {
+        for (int i = 0; i < enemyTanks.size(); i++) {
             enemyTanks.get(i).paint(g);
         }
-
-        for (int i = 0; i <bullets.size() ; i++) {
-            for (int j = 0; j < enemyTanks.size() ; j++) {
-                check(enemyTanks.get(j),bullets.get(i));
-                }
+        /**
+         * 画爆炸
+         */
+        explode.paint(g);
+        /**
+         * 检测子弹撞击
+         */
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < enemyTanks.size(); j++) {
+                check(enemyTanks.get(j), bullets.get(i));
             }
+        }
     }
-    public void check(Tank tank,Bullet bullet){
+
+    public void check(Tank tank, Bullet bullet) {
         /**
          * 判断子弹是否击中坦克
          */
-        if(tank.getGroup() == bullet.getGroup()){
+        if (tank.getGroup() == bullet.getGroup()) {
             return;
         }
-        if(new Rectangle(tank.getX(),tank.getY(),Tank.weight,Tank.height).intersects(new Rectangle(bullet.getX(),bullet.getY(),Bullet.weight,Bullet.height))){
+        if (new Rectangle(tank.getX(), tank.getY(), Tank.weight, Tank.height).intersects(new Rectangle(bullet.getX(), bullet.getY(), Bullet.weight, Bullet.height))) {
             bullet.die();
             tank.die();
         }
@@ -90,18 +100,19 @@ public class TankFrame extends Frame {
      * 在内存中先生成一张图片，把内容画在图片上，画完之后在画到屏幕上
      */
     Image image = null;
+
     @Override
-    public void update(Graphics g){
-        if(null == image){
-            image = this.createImage(Constant.GAME_WIDTH,Constant.GAME_HEIGHT);
+    public void update(Graphics g) {
+        if (null == image) {
+            image = this.createImage(Constant.GAME_WIDTH, Constant.GAME_HEIGHT);
         }
         Graphics screen = image.getGraphics();
         Color color = screen.getColor();
         screen.setColor(Color.BLACK);
-        screen.fillRect(0,0,Constant.GAME_WIDTH,Constant.GAME_HEIGHT);
+        screen.fillRect(0, 0, Constant.GAME_WIDTH, Constant.GAME_HEIGHT);
         screen.setColor(color);
         paint(screen);
-        g.drawImage(image,0,0,null);
+        g.drawImage(image, 0, 0, null);
     }
 
     /**

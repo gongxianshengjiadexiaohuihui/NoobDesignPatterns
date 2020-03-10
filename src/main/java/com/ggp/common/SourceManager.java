@@ -20,6 +20,11 @@ public class SourceManager {
      */
     public static BufferedImage bulletL, bulletR, bulletU, bulletD;
 
+    /**
+     * 坦克爆炸效果
+     */
+    public static BufferedImage[] explodes= new BufferedImage[16];
+
     static {
         try {
             tankL = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/tankL.gif"));
@@ -32,6 +37,9 @@ public class SourceManager {
             bulletU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/bullet/move/bulletU.gif"));
             bulletD = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/bullet/move/bulletD.gif"));
 
+            for (int i = 0; i < explodes.length ; i++) {
+                explodes[i] =ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/explode/e"+(i+1)+".gif"));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
