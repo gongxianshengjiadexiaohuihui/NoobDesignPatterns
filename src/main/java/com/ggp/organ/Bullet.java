@@ -2,6 +2,7 @@ package com.ggp.organ;
 
 import com.ggp.common.ConstantCommand;
 import com.ggp.common.DirectionEnum;
+import com.ggp.common.SourceManager;
 import com.ggp.view.TankFrame;
 
 import java.awt.*;
@@ -15,7 +16,7 @@ public class Bullet {
     /**
      * 子弹坐标
      */
-    private int x,y;
+    private int x, y;
     /**
      * 子弹方向
      */
@@ -32,29 +33,47 @@ public class Bullet {
      * 持有主界面对象
      */
     private TankFrame tankFrame;
-    public Bullet(int x, int y, DirectionEnum dir,TankFrame tankFrame) {
+    /**
+     * 子弹的宽高
+     */
+    public static Integer weight = SourceManager.bulletD.getWidth();
+    public static Integer height = SourceManager.bulletD.getHeight();
+
+
+    public Bullet(int x, int y, DirectionEnum dir, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tankFrame = tankFrame;
     }
-    public void paint(Graphics g){
-        if(!live){
+
+    public void paint(Graphics g) {
+        if (!live) {
             this.tankFrame.getBullets().remove(this);
         }
-        Color color = g.getColor();
-        g.setColor(Color.RED);
-        g.fillOval(x,y,r,r);
-        /**
-         * 还原画笔颜色
-         */
-        g.setColor(color);
+        switch (dir) {
+            case LFFT:
+                g.drawImage(SourceManager.bulletL, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(SourceManager.bulletR, x, y, null);
+                break;
+            case UP:
+                g.drawImage(SourceManager.bulletU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(SourceManager.bulletD, x, y, null);
+                break;
+            default:
+                break;
+        }
         move();
     }
+
     /**
      * 子弹移动
      */
-    private void move(){
+    private void move() {
         switch (dir) {
             case LFFT:
                 x -= ConstantCommand.BULLET_SPEED;
@@ -63,7 +82,7 @@ public class Bullet {
                 x += ConstantCommand.BULLET_SPEED;
                 break;
             case UP:
-                y -=ConstantCommand.BULLET_SPEED;
+                y -= ConstantCommand.BULLET_SPEED;
                 break;
             case DOWN:
                 y += ConstantCommand.BULLET_SPEED;
@@ -71,7 +90,10 @@ public class Bullet {
             default:
                 break;
         }
-        if(x<0 || y < 0 || x>ConstantCommand.GAME_WIDTH||y<ConstantCommand.GAME_HEIGHT){
+        /**
+         * 边界值
+         */
+        if (x < 0 || y < 0 || x > ConstantCommand.GAME_WIDTH || y > ConstantCommand.GAME_HEIGHT) {
             live = false;
         }
     }

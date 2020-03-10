@@ -28,7 +28,7 @@ public class TankFrame extends Frame {
         /**
          * 页面属性
          */
-        this.setSize(800, 800);
+        this.setSize(ConstantCommand.GAME_WIDTH, ConstantCommand.GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("Tank war");
         this.setVisible(true);
