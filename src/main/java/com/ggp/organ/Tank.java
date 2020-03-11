@@ -40,23 +40,23 @@ public class Tank {
      */
     private Group group = Group.BLUE;
 
-    private Random random=new Random();
+    private Random random = new Random();
     /**
      * 坦克宽高
      */
     public static Integer weight = SourceManager.tankD.getWidth();
     public static Integer height = SourceManager.tankD.getHeight();
 
-    public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame,Group  group) {
+    public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tankFrame = tankFrame;
-        this.group=group;
+        this.group = group;
     }
 
     public void paint(Graphics g) {
-        if(!living){
+        if (!living) {
             this.tankFrame.getEnemyTanks().remove(this);
         }
         switch (dir) {
@@ -101,15 +101,25 @@ public class Tank {
             default:
                 break;
         }
-        if(random.nextInt(10) > 8){
+        if (this.group == Group.BLUE && random.nextInt(100) > 95) {
             this.fire();
+        }
+        if (this.group == Group.BLUE) {
+            this.rotateDir();
         }
     }
 
-
+    /**
+     * 旋转方向
+     */
+    private void rotateDir() {
+        if (random.nextInt(100) > 95) {
+            this.dir = DirectionEnum.values()[random.nextInt(4)];
+        }
+    }
 
     public void die() {
-        living=false;
+        living = false;
     }
 
     /**
@@ -138,7 +148,7 @@ public class Tank {
                 break;
         }
 
-        tankFrame.getBullets().add(new Bullet(bulletX, bulletY, this.dir, this.tankFrame,this.group));
+        tankFrame.getBullets().add(new Bullet(bulletX, bulletY, this.dir, this.tankFrame, this.group));
     }
 
     public void setDir(DirectionEnum dir) {
