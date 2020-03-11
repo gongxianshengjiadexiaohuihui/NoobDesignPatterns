@@ -46,6 +46,10 @@ public class Tank {
      */
     public static Integer weight = SourceManager.redTankD.getWidth();
     public static Integer height = SourceManager.redTankD.getHeight();
+    /**
+     * 区域
+     */
+    public Rectangle rectangle = new Rectangle();
 
     public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
@@ -53,6 +57,11 @@ public class Tank {
         this.dir = dir;
         this.tankFrame = tankFrame;
         this.group = group;
+
+        rectangle.x = this.x;
+        rectangle.y = this.y;
+        rectangle.width = weight;
+        rectangle.width = height;
     }
 
     public void paint(Graphics g) {
@@ -61,21 +70,21 @@ public class Tank {
         }
         switch (dir) {
             case LFFT:
-                g.drawImage(this.group == Group.RED?SourceManager.redTankL:SourceManager.blueTankL, x, y, null);
+                g.drawImage(this.group == Group.RED ? SourceManager.redTankL : SourceManager.blueTankL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(this.group == Group.RED?SourceManager.redTankR:SourceManager.blueTankR, x, y, null);
+                g.drawImage(this.group == Group.RED ? SourceManager.redTankR : SourceManager.blueTankR, x, y, null);
                 break;
             case UP:
-                g.drawImage(this.group == Group.RED?SourceManager.redTankU:SourceManager.blueTankU, x, y, null);
+                g.drawImage(this.group == Group.RED ? SourceManager.redTankU : SourceManager.blueTankU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(this.group == Group.RED?SourceManager.redTankU:SourceManager.blueTankD, x, y, null);
+                g.drawImage(this.group == Group.RED ? SourceManager.redTankD : SourceManager.blueTankD, x, y, null);
                 break;
             default:
                 break;
         }
-        move();
+        this.move();
     }
 
     /**
@@ -101,11 +110,39 @@ public class Tank {
             default:
                 break;
         }
+        /**
+         * 更新区域
+         */
+        rectangle.x = x;
+        rectangle.y = y;
+
         if (this.group == Group.BLUE && random.nextInt(100) > 95) {
             this.fire();
         }
         if (this.group == Group.BLUE) {
             this.rotateDir();
+        }
+        this.boundsCheck();
+    }
+
+    /**
+     * 边界检测
+     */
+    private void boundsCheck() {
+        if (this.x < 0) {
+            this.x = 0;
+        }
+        /**
+         * 30是菜单的长度
+         */
+        if (this.y < 30) {
+            this.y = 30;
+        }
+        if (this.x > Constant.GAME_WIDTH - weight) {
+            this.x = Constant.GAME_WIDTH - weight;
+        }
+        if (this.y > Constant.GAME_HEIGHT - height) {
+            this.y = Constant.GAME_HEIGHT - height;
         }
     }
 
@@ -129,11 +166,11 @@ public class Tank {
         int bulletX = 0, bulletY = 0;
         switch (dir) {
             case UP:
-                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2 ;
+                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2;
                 bulletY = this.y - Bullet.height;
                 break;
             case DOWN:
-                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2 ;
+                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2;
                 bulletY = this.y + Tank.height;
                 break;
             case LFFT:
@@ -142,7 +179,7 @@ public class Tank {
                 break;
             case RIGHT:
                 bulletX = this.x + Tank.weight;
-                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2 ;
+                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2;
                 break;
             default:
                 break;

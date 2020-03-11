@@ -40,6 +40,10 @@ public class Bullet {
     public static Integer weight = SourceManager.bulletD.getWidth();
     public static Integer height = SourceManager.bulletD.getHeight();
 
+    /**
+     * 区域
+     */
+    public Rectangle rectangle = new Rectangle();
 
     public Bullet(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
@@ -47,6 +51,11 @@ public class Bullet {
         this.dir = dir;
         this.tankFrame = tankFrame;
         this.group = group;
+
+        rectangle.x = this.x;
+        rectangle.y = this.y;
+        rectangle.width = weight;
+        rectangle.width = height;
     }
 
     public void paint(Graphics g) {
@@ -93,6 +102,11 @@ public class Bullet {
                 break;
         }
        check();
+        /**
+         * 更新区域
+         */
+        rectangle.x = x;
+        rectangle.y = y;
     }
     private void check(){
         /**
@@ -110,7 +124,7 @@ public class Bullet {
         if (tank.getGroup() == this.getGroup()) {
             return;
         }
-        if (new Rectangle(tank.getX(), tank.getY(), Tank.weight, Tank.height).intersects(new Rectangle(x, y, weight, height))) {
+        if (rectangle.intersects(tank.rectangle)) {
             this.die();
             tank.die();
             int ex,ey;
