@@ -30,8 +30,10 @@ public class TankFrame extends Frame {
      * 敌方坦克
      */
     List<Tank> enemyTanks = new ArrayList<>();
-    Explode  explode = new Explode(300,300,this);
-
+    /**
+     * 所有爆炸
+     */
+    List<Explode> explodes = new ArrayList<>();
     public TankFrame() {
         /**
          * 页面属性
@@ -70,27 +72,16 @@ public class TankFrame extends Frame {
         /**
          * 画爆炸
          */
-        explode.paint(g);
+        for (int i = 0; i <explodes.size() ; i++) {
+            explodes.get(i).paint(g);
+        }
         /**
          * 检测子弹撞击
          */
         for (int i = 0; i < bullets.size(); i++) {
             for (int j = 0; j < enemyTanks.size(); j++) {
-                check(enemyTanks.get(j), bullets.get(i));
+                bullets.get(i).collideWith(enemyTanks.get(j));
             }
-        }
-    }
-
-    public void check(Tank tank, Bullet bullet) {
-        /**
-         * 判断子弹是否击中坦克
-         */
-        if (tank.getGroup() == bullet.getGroup()) {
-            return;
-        }
-        if (new Rectangle(tank.getX(), tank.getY(), Tank.weight, Tank.height).intersects(new Rectangle(bullet.getX(), bullet.getY(), Bullet.weight, Bullet.height))) {
-            bullet.die();
-            tank.die();
         }
     }
 
@@ -207,5 +198,9 @@ public class TankFrame extends Frame {
 
     public List<Tank> getEnemyTanks() {
         return enemyTanks;
+    }
+
+    public List<Explode> getExplodes() {
+        return explodes;
     }
 }

@@ -24,10 +24,6 @@ public class Explode {
      * 持有对象
      */
     private TankFrame tankFrame;
-    /**
-     * 爆炸是否存活
-     */
-    private boolean living = true;
     private Integer step = 0;
     public Explode(int x, int y, TankFrame tankFrame) {
         this.x = x;
@@ -36,13 +32,10 @@ public class Explode {
     }
 
     public void paint(Graphics  g){
-        if(!living){
-            return;
-        }
+
         g.drawImage(SourceManager.explodes[step++],this.x,this.y,null);
         if(step >= SourceManager.explodes.length ){
-            living=false;
-            step=0;
+           tankFrame.getExplodes().remove(this);
         }
     }
 }

@@ -117,25 +117,22 @@ public class Tank {
      */
     public void fire() {
         int bulletX = 0, bulletY = 0;
-        /**
-         * 坐标后面加的数是因为图片尺寸产生的修正值，为了看起来子弹是从坦克炮管中射出来
-         */
         switch (dir) {
             case UP:
-                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2 + 2;
+                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2 ;
                 bulletY = this.y - Bullet.height;
                 break;
             case DOWN:
-                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2 - 1;
+                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2 ;
                 bulletY = this.y + Tank.height;
                 break;
             case LFFT:
                 bulletX = this.x - Bullet.weight;
-                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2 + 2;
+                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2;
                 break;
             case RIGHT:
                 bulletX = this.x + Tank.weight;
-                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2 + 4;
+                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2 ;
                 break;
             default:
                 break;

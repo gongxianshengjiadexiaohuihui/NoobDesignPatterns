@@ -1,6 +1,7 @@
 package com.ggp;
 
 
+import com.ggp.common.Audio;
 import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.Group;
@@ -18,6 +19,7 @@ public class StartUp {
         for (int i = 0; i <Constant.ENEMY_COUNT; i++) {
             tankFrame.getEnemyTanks().add(new Tank(50*i,100,DirectionEnum.DOWN,tankFrame,Group.BLUE));
         }
+        new Thread(()-> new Audio("audio/war1.wav").loop()).start();
         while (true){
             Thread.sleep(100);
             tankFrame.repaint();

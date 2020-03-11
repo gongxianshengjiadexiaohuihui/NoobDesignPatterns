@@ -103,6 +103,19 @@ public class Bullet {
         }
 
     }
+    public void collideWith(Tank tank) {
+        /**
+         * 判断子弹是否击中坦克
+         */
+        if (tank.getGroup() == this.getGroup()) {
+            return;
+        }
+        if (new Rectangle(tank.getX(), tank.getY(), Tank.weight, Tank.height).intersects(new Rectangle(x, y, weight, height))) {
+            this.die();
+            tank.die();
+            tankFrame.getExplodes().add(new Explode(x,y,tankFrame));
+        }
+    }
     public int getX() {
         return x;
     }
@@ -130,4 +143,5 @@ public class Bullet {
     public void setGroup(Group group) {
         this.group = group;
     }
+
 }

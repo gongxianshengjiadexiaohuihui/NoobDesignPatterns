@@ -9,11 +9,11 @@ public class Constant {
     /**
      * 游戏界面长度
      */
-    public static  final Integer GAME_WIDTH = 800;
+    public static  final Integer GAME_WIDTH = 1060;
     /**
      * 游戏界面宽度
      */
-    public static  final Integer GAME_HEIGHT = 600;
+    public static  final Integer GAME_HEIGHT = 960;
     /**
      * 坦克速度
      */
