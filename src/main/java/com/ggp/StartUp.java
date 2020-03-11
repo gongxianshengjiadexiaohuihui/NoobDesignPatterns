@@ -1,10 +1,7 @@
 package com.ggp;
 
 
-import com.ggp.common.Audio;
-import com.ggp.common.Constant;
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
+import com.ggp.common.*;
 import com.ggp.organ.Tank;
 import com.ggp.view.TankFrame;
 
@@ -16,7 +13,8 @@ import com.ggp.view.TankFrame;
 public class StartUp {
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
-        for (int i = 0; i <Constant.ENEMY_COUNT; i++) {
+        int enemy = Integer.valueOf((String) PropertiesManager.get("initEnemyCount"));
+        for (int i = 0; i <enemy; i++) {
             tankFrame.getEnemyTanks().add(new Tank(50*i,100,DirectionEnum.DOWN,tankFrame,Group.BLUE));
         }
         new Thread(()-> new Audio("audio/war1.wav").loop()).start();

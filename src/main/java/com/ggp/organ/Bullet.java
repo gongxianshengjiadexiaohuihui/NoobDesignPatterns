@@ -55,7 +55,7 @@ public class Bullet {
         rectangle.x = this.x;
         rectangle.y = this.y;
         rectangle.width = weight;
-        rectangle.width = height;
+        rectangle.height = height;
     }
 
     public void paint(Graphics g) {
@@ -121,10 +121,10 @@ public class Bullet {
         /**
          * 判断子弹是否击中坦克
          */
-        if (tank.getGroup() == this.getGroup()) {
+        if (this.getGroup() == tank.getGroup()) {
             return;
         }
-        if (rectangle.intersects(tank.rectangle)) {
+        if (this.rectangle.intersects(tank.rectangle)) {
             this.die();
             tank.die();
             int ex,ey;

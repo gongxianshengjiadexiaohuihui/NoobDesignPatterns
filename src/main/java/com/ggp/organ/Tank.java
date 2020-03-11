@@ -61,7 +61,7 @@ public class Tank {
         rectangle.x = this.x;
         rectangle.y = this.y;
         rectangle.width = weight;
-        rectangle.width = height;
+        rectangle.height = height;
     }
 
     public void paint(Graphics g) {
