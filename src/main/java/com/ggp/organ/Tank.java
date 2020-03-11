@@ -44,8 +44,8 @@ public class Tank {
     /**
      * 坦克宽高
      */
-    public static Integer weight = SourceManager.tankD.getWidth();
-    public static Integer height = SourceManager.tankD.getHeight();
+    public static Integer weight = SourceManager.redTankD.getWidth();
+    public static Integer height = SourceManager.redTankD.getHeight();
 
     public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
@@ -61,16 +61,16 @@ public class Tank {
         }
         switch (dir) {
             case LFFT:
-                g.drawImage(SourceManager.tankL, x, y, null);
+                g.drawImage(this.group == Group.RED?SourceManager.redTankL:SourceManager.blueTankL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(SourceManager.tankR, x, y, null);
+                g.drawImage(this.group == Group.RED?SourceManager.redTankR:SourceManager.blueTankR, x, y, null);
                 break;
             case UP:
-                g.drawImage(SourceManager.tankU, x, y, null);
+                g.drawImage(this.group == Group.RED?SourceManager.redTankU:SourceManager.blueTankU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(SourceManager.tankD, x, y, null);
+                g.drawImage(this.group == Group.RED?SourceManager.redTankU:SourceManager.blueTankD, x, y, null);
                 break;
             default:
                 break;

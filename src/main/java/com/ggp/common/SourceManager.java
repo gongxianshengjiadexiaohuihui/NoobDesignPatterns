@@ -12,10 +12,13 @@ import java.io.IOException;
  */
 public class SourceManager {
     /**
-     * 坦克图片资源
+     * 蓝方坦克图片资源
      */
-    public static BufferedImage tankL, tankR, tankU, tankD;
-
+    public static BufferedImage redTankL, redTankR, redTankU, redTankD;
+    /**
+     * 红方坦克图片资源
+     */
+    public static BufferedImage blueTankL, blueTankR, blueTankU, blueTankD;
     /**
      * 子弹资源
      */
@@ -28,10 +31,15 @@ public class SourceManager {
 
     static {
         try {
-            tankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/BadTank1.png"));
-            tankR = rotateImage(tankU,90);
-            tankL = rotateImage(tankU,-90);
-            tankD = rotateImage(tankU,180);
+            blueTankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/BlueTank.png"));
+            blueTankR = rotateImage(blueTankU,90);
+            blueTankL = rotateImage(blueTankU,-90);
+            blueTankD = rotateImage(blueTankU,180);
+
+            redTankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/RedTank.png"));
+            redTankR = rotateImage(redTankU,90);
+            redTankL = rotateImage(redTankU,-90);
+            redTankD = rotateImage(redTankU,180);
 
             bulletU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/bullet/move/bullet.png"));
             bulletD = rotateImage(bulletU,180);
