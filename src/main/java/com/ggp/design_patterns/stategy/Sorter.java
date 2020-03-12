@@ -1,15 +1,27 @@
 package com.ggp.design_patterns.stategy;
 
-import java.util.Arrays;
 
 /**
  * @Author:GGP
  * @Date:2020/3/12 20:43
  * @Description:
  */
-public class Sorter {
-    public static int[] sort(int[] arr){
-        Arrays.sort(arr);
-        return arr;
+public class Sorter<T> {
+    public T[] sort(T[] arr,Comparator<T> comparator){
+        for (int i = 0; i <arr.length ; i++) {
+            int minPos = i;
+            for (int j = i; j <arr.length ; j++) {
+                minPos = comparator.compare(arr[i],arr[j]) == -1?i:j;
+            }
+            swap(arr,i,minPos);
+        }
+        return  arr;
     }
+
+    private void swap(T[] arr, int i, int minPos) {
+        T temp = arr[i];
+        arr[i] =  arr[minPos];
+        arr[minPos] = temp;
+    }
+
 }

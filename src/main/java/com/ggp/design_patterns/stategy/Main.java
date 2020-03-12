@@ -9,7 +9,11 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        int[] a = new int[]{4,5,2,5,2};
-        System.out.println(Arrays.toString(Sorter.sort(a)));
+        Cat[] cats={new Cat(5,1),new Cat(4,2),new Cat(3,3)};
+        Sorter<Cat> sorter = new Sorter<>();
+        Cat[] a = sorter.sort(cats,new CompareWeightComparator());
+        System.out.println(Arrays.toString(a));
+        a = sorter.sort(cats,new CompareHeightComparator());
+        System.out.println(Arrays.toString(a));
     }
 }
