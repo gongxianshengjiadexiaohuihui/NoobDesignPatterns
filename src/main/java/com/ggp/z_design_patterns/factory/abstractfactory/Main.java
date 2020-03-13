@@ -7,7 +7,7 @@ package com.ggp.z_design_patterns.factory.abstractfactory;
  */
 public class Main {
     public static void main(String[] args) {
-        AbstractFactory factory = new MagicFactory();
+        AbstractFactory factory = new ModernFactory();
         factory.createFood().eat();
         factory.createVehicle().go();
         factory.createWeapon().shoot();
