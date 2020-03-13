@@ -1,4 +1,4 @@
-package com.ggp.design_patterns.singleton;
+package com.ggp.z_design_patterns.singleton;
 
 /**
  * @Author:GGP

@@ -1,4 +1,4 @@
-package com.ggp;
+package com.ggp.start;
 
 
 import com.ggp.common.*;
@@ -13,7 +13,7 @@ import com.ggp.view.TankFrame;
 public class StartUp {
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
-        int enemy = Integer.valueOf((String) PropertiesManager.get("initEnemyCount"));
+        int enemy = Integer.valueOf((String) Config.get("initEnemyCount"));
         for (int i = 0; i <enemy; i++) {
             tankFrame.getEnemyTanks().add(new Tank(50*i,100,DirectionEnum.DOWN,tankFrame,Group.BLUE));
         }

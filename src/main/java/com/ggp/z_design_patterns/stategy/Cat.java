@@ -1,4 +1,4 @@
-package com.ggp.design_patterns.stategy;
+package com.ggp.z_design_patterns.stategy;
 
 /**
  * @Author:GGP

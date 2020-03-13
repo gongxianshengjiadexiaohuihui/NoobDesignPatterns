@@ -1,4 +1,4 @@
-package com.ggp.design_patterns.singleton;
+package com.ggp.z_design_patterns.singleton;
 
 
 /**
@@ -6,10 +6,10 @@ package com.ggp.design_patterns.singleton;
  * @Date:2020/3/12 19:47
  * @Description:
  *   下面是 反编译结果
- *   public final class com.ggp.design_patterns.singleton.LazySingletonD extends java.lang.Enum<com.ggp.design_patterns.singleton.LazySingletonD> {
- *   public static final com.ggp.design_patterns.singleton.LazySingletonD INSTANCE;
- *   public static com.ggp.design_patterns.singleton.LazySingletonD[] values();
- *   public static com.ggp.design_patterns.singleton.LazySingletonD valueOf(java.lang.String);
+ *   public final class com.ggp.z_design_patterns.singleton.LazySingletonD extends java.lang.Enum<com.ggp.z_design_patterns.singleton.LazySingletonD> {
+ *   public static final com.ggp.z_design_patterns.singleton.LazySingletonD INSTANCE;
+ *   public static com.ggp.z_design_patterns.singleton.LazySingletonD[] values();
+ *   public static com.ggp.z_design_patterns.singleton.LazySingletonD valueOf(java.lang.String);
  *   public static void main(java.lang.String[]) throws java.lang.Exception;
  *   static {};
  * }

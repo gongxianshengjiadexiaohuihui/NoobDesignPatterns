@@ -56,6 +56,11 @@ public class Bullet {
         rectangle.y = this.y;
         rectangle.width = weight;
         rectangle.height = height;
+
+        /**
+         * 添加子弹
+         */
+        this.tankFrame.getBullets().add(this);
     }
 
     public void paint(Graphics g) {

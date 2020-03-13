@@ -1,9 +1,9 @@
 package com.ggp.organ;
 
-import com.ggp.common.Constant;
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
-import com.ggp.common.SourceManager;
+import com.ggp.common.*;
+import com.ggp.fire.DefaultFireStrategy;
+import com.ggp.fire.FireStrategy;
+import com.ggp.fire.FourFireStrategy;
 import com.ggp.view.TankFrame;
 
 import java.awt.*;
@@ -18,7 +18,7 @@ public class Tank {
     /**
      * 坦克坐标
      */
-    private int x, y;
+     private int x, y;
     /**
      * 坦克方向
      */
@@ -51,6 +51,11 @@ public class Tank {
      */
     public Rectangle rectangle = new Rectangle();
 
+    /**
+     * 开火策略  默认策略
+     */
+    public static FireStrategy fireStrategy = new DefaultFireStrategy();
+
     public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
         this.y = y;
@@ -62,6 +67,12 @@ public class Tank {
         rectangle.y = this.y;
         rectangle.width = weight;
         rectangle.height = height;
+        /**
+         * 红方坦克开火策略从配置文件读取
+         */
+        if(group  == Group.RED){
+            fireStrategy = Config.getFireStategy();
+        }
     }
 
     public void paint(Graphics g) {
@@ -163,29 +174,7 @@ public class Tank {
      * 发射子弹
      */
     public void fire() {
-        int bulletX = 0, bulletY = 0;
-        switch (dir) {
-            case UP:
-                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2;
-                bulletY = this.y - Bullet.height;
-                break;
-            case DOWN:
-                bulletX = this.x + Tank.weight / 2 - Bullet.weight / 2;
-                bulletY = this.y + Tank.height;
-                break;
-            case LFFT:
-                bulletX = this.x - Bullet.weight;
-                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2;
-                break;
-            case RIGHT:
-                bulletX = this.x + Tank.weight;
-                bulletY = this.y + Tank.weight / 2 - Bullet.weight / 2;
-                break;
-            default:
-                break;
-        }
-
-        tankFrame.getBullets().add(new Bullet(bulletX, bulletY, this.dir, this.tankFrame, this.group));
+      fireStrategy.fire(this);
     }
 
     public void setDir(DirectionEnum dir) {
@@ -218,5 +207,17 @@ public class Tank {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public DirectionEnum getDir() {
+        return dir;
+    }
+
+    public TankFrame getTankFrame() {
+        return tankFrame;
+    }
+
+    public void setTankFrame(TankFrame tankFrame) {
+        this.tankFrame = tankFrame;
     }
 }
