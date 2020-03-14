@@ -15,7 +15,7 @@ public class StartUp {
         TankFrame tankFrame = new TankFrame();
         int enemy = Integer.valueOf((String) Config.get("initEnemyCount"));
         for (int i = 0; i <enemy; i++) {
-            tankFrame.getEnemyTanks().add(new Tank(50*i,100,DirectionEnum.DOWN,tankFrame,Group.BLUE));
+            tankFrame.getEnemyTanks().add(Config.gameFactory.createTank(50*i,100,DirectionEnum.DOWN,tankFrame,Group.BLUE));
         }
         new Thread(()-> new Audio("audio/war1.wav").loop()).start();
         while (true){

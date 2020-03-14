@@ -1,13 +1,14 @@
 package com.ggp.common;
 
-import com.ggp.fire.DefaultFireStrategy;
-import com.ggp.fire.FireStrategy;
-import com.ggp.fire.FourFireStrategy;
+import com.ggp.factory.DefaultGameFactory;
+import com.ggp.factory.GameFactory;
+import com.ggp.factory.SunGameFactory;
+import com.ggp.firestategy.DefaultFireStrategy;
+import com.ggp.firestategy.FireStrategy;
+import com.ggp.firestategy.FourFireStrategy;
 
 import java.io.IOException;
 import java.util.Properties;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 
 /**
  * @Author:GGP
@@ -15,8 +16,12 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
  * @Description:
  */
 public class Config {
-    static Properties properties = new Properties();
-
+    public static Properties properties = new Properties();
+    /**
+     * 默认的游戏工厂
+     */
+    //public  static GameFactory gameFactory = new DefaultGameFactory();
+    public static  GameFactory gameFactory = new SunGameFactory();
     static {
         try {
             properties.load(Config.class.getClassLoader().getResourceAsStream("config.properties"));
@@ -33,7 +38,7 @@ public class Config {
      * 获取主站坦克开火策略
      * @return
      */
-    public static FireStrategy getFireStategy(){
+    public static FireStrategy getFireStrategy(){
         int i = Integer.valueOf(get("fireStrategy"));
         if(i == 2){
             return new FourFireStrategy();

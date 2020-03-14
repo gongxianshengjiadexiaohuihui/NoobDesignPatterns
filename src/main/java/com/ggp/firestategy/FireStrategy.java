@@ -1,6 +1,6 @@
-package com.ggp.fire;
+package com.ggp.firestategy;
 
-import com.ggp.organ.Tank;
+import com.ggp.factory.BaseTank;
 
 /**
  * @Author:GGP
@@ -12,5 +12,5 @@ public interface FireStrategy {
      * 开火策略
      * @param tank
      */
-    void  fire(Tank tank);
+    void  fire(BaseTank tank);
 }

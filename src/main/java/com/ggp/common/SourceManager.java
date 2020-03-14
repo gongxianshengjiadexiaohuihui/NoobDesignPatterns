@@ -12,42 +12,69 @@ import java.io.IOException;
  */
 public class SourceManager {
     /**
-     * 蓝方坦克图片资源
+     * 坦克默认图片资源
      */
-    public static BufferedImage redTankL, redTankR, redTankU, redTankD;
+    public static BufferedImage TankL, TankR, TankU, TankD;
     /**
-     * 红方坦克图片资源
+     * 坦克sun图片资源
      */
-    public static BufferedImage blueTankL, blueTankR, blueTankU, blueTankD;
+    public static BufferedImage sunTankL, sunTankR, sunTankU, sunTankD;
     /**
-     * 子弹资源
+     * 敌人坦克图片资源
      */
-    public static BufferedImage bulletL, bulletR, bulletU, bulletD;
+    public static BufferedImage enemyTankL, enemyTankR, enemyTankU, enemyTankD;
 
     /**
-     * 坦克爆炸效果
+     * 子弹默认图片资源
      */
-    public static BufferedImage[] explodes = new BufferedImage[16];
+    public static BufferedImage defaultBulletL, defaultBulletR, defaultBulletU, defaultBulletD;
+    /**
+     * 子弹sun类型图片资源
+     */
+    public static BufferedImage sunBulletL, sunBulletR, sunBulletU, sunBulletD;
+
+
+    /**
+     * 坦克默认爆炸效果
+     */
+    public static BufferedImage[] defaultExplodes = new BufferedImage[16];
+    /**
+     * 坦克sun爆炸效果
+     */
+    public static BufferedImage[] sunExplodes = new BufferedImage[11];
 
     static {
         try {
-            blueTankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/BlueTank.png"));
-            blueTankR = rotateImage(blueTankU,90);
-            blueTankL = rotateImage(blueTankU,-90);
-            blueTankD = rotateImage(blueTankU,180);
+            enemyTankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/enemyTank.png"));
+            enemyTankR = rotateImage(enemyTankU, 90);
+            enemyTankL = rotateImage(enemyTankU, -90);
+            enemyTankD = rotateImage(enemyTankU, 180);
 
-            redTankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/RedTank.png"));
-            redTankR = rotateImage(redTankU,90);
-            redTankL = rotateImage(redTankU,-90);
-            redTankD = rotateImage(redTankU,180);
+            TankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/tank.png"));
+            TankR = rotateImage(TankU, 90);
+            TankL = rotateImage(TankU, -90);
+            TankD = rotateImage(TankU, 180);
 
-            bulletU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/bullet/move/bullet.png"));
-            bulletD = rotateImage(bulletU,180);
-            bulletL = rotateImage(bulletU,-90);
-            bulletR = rotateImage(bulletU,90);
+            sunTankU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/move/sunTank.png"));
+            sunTankR = rotateImage(sunTankU, 90);
+            sunTankL = rotateImage(sunTankU, -90);
+            sunTankD = rotateImage(sunTankU, 180);
 
-            for (int i = 0; i < explodes.length; i++) {
-                explodes[i] = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/explode/e" + (i + 1) + ".gif"));
+            defaultBulletU = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/bullet/move/bullet.png"));
+            defaultBulletD = rotateImage(defaultBulletU, 180);
+            defaultBulletL = rotateImage(defaultBulletU, -90);
+            defaultBulletR = rotateImage(defaultBulletU, 90);
+
+            sunBulletR = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/bullet/move/sunBullet.png"));
+            sunBulletL = rotateImage(sunBulletR, 180);
+            sunBulletD = rotateImage(sunBulletR, 90);
+            sunBulletU = rotateImage(sunBulletR, -90);
+
+            for (int i = 0; i < defaultExplodes.length; i++) {
+                defaultExplodes[i] = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/explode/e" + (i + 1) + ".gif"));
+            }
+            for (int i = 0; i < sunExplodes.length; i++) {
+                sunExplodes[i] = ImageIO.read(SourceManager.class.getClassLoader().getResourceAsStream("images/tank/explode/" + i + ".gif"));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,10 +1,10 @@
 package com.ggp.view;
 
+import com.ggp.common.Config;
 import com.ggp.common.Constant;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.Group;
-import com.ggp.organ.Bullet;
-import com.ggp.organ.Explode;
+import com.ggp.factory.*;
 import com.ggp.organ.Tank;
 
 import java.awt.*;
@@ -21,19 +21,20 @@ import java.util.List;
  * @Description:
  */
 public class TankFrame extends Frame {
-    Tank myTank = new Tank(200, 200, DirectionEnum.DOWN, this, Group.RED);
+    BaseTank myTank = Config.gameFactory.createTank(200, 200,DirectionEnum.DOWN, this,Group.RED);
     /**
      * 所有子弹
      */
-    List<Bullet> bullets = new ArrayList<>();
+    List<BaseBullet> bullets = new ArrayList<>();
     /**
      * 敌方坦克
      */
-    List<Tank> enemyTanks = new ArrayList<>();
+    List<BaseTank> enemyTanks = new ArrayList<>();
     /**
      * 所有爆炸
      */
-    List<Explode> explodes = new ArrayList<>();
+    List<BaseExplode> explodes = new ArrayList<>();
+
     public TankFrame() {
         /**
          * 页面属性
@@ -170,38 +171,39 @@ public class TankFrame extends Frame {
              * 判断是否移动
              */
             if (!isL && !isR && !isU && !isD) {
-                myTank.setMoving(false);
+                myTank.moving = false;
             } else {
-                myTank.setMoving(true);
+                myTank.moving = true;
             }
             /**
              * 判断方向
              */
             if (isL) {
-                myTank.setDir(DirectionEnum.LFFT);
+                myTank.dir = DirectionEnum.LFFT;
             }
             if (isR) {
-                myTank.setDir(DirectionEnum.RIGHT);
+                myTank.dir = DirectionEnum.RIGHT;
             }
             if (isU) {
-                myTank.setDir(DirectionEnum.UP);
+                myTank.dir = DirectionEnum.UP;
             }
             if (isD) {
-                myTank.setDir(DirectionEnum.DOWN);
+                myTank.dir = DirectionEnum.DOWN;
             }
 
         }
     }
 
-    public List<Bullet> getBullets() {
+    public List<BaseBullet> getBullets() {
         return bullets;
     }
 
-    public List<Tank> getEnemyTanks() {
+    public List<BaseTank> getEnemyTanks() {
         return enemyTanks;
     }
 
-    public List<Explode> getExplodes() {
+    public List<BaseExplode> getExplodes() {
         return explodes;
     }
+
 }

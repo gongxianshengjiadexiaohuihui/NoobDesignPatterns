@@ -1,6 +1,5 @@
 package com.ggp.organ;
 
-import com.ggp.common.Config;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.Group;
 import com.ggp.common.SourceManager;
@@ -11,12 +10,12 @@ import java.awt.*;
 
 /**
  * @Author:GGP
- * @Date:2020/3/9 21:34
+ * @Date:2020/3/14 16:06
  * @Description:
  */
-public class Bullet extends BaseBullet {
+public class SunBullet extends BaseBullet {
 
-    public Bullet(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
+    public SunBullet(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -25,7 +24,7 @@ public class Bullet extends BaseBullet {
 
         rectangle.x = this.x;
         rectangle.y = this.y;
-        rectangle.width =weight;
+        rectangle.width = weight;
         rectangle.height = height;
 
         /**
@@ -41,23 +40,21 @@ public class Bullet extends BaseBullet {
         }
         switch (dir) {
             case LFFT:
-                g.drawImage(SourceManager.defaultBulletL, x, y, null);
+                g.drawImage(SourceManager.sunBulletL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(SourceManager.defaultBulletR, x, y, null);
+                g.drawImage(SourceManager.sunBulletR, x, y, null);
                 break;
             case UP:
-                g.drawImage(SourceManager.defaultBulletU, x, y, null);
+                g.drawImage(SourceManager.sunBulletU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(SourceManager.defaultBulletD, x, y, null);
+                g.drawImage(SourceManager.sunBulletD, x, y, null);
                 break;
             default:
                 break;
         }
         move();
     }
-
-
 
 }

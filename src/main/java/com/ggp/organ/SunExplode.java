@@ -8,11 +8,12 @@ import java.awt.*;
 
 /**
  * @Author:GGP
- * @Date:2020/3/10 22:45
+ * @Date:2020/3/14 15:24
  * @Description:
  */
-public class Explode extends BaseExplode {
-    public Explode(int x, int y, TankFrame tankFrame) {
+public class SunExplode extends BaseExplode {
+
+    public SunExplode(int x, int y, TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.tankFrame = tankFrame;
@@ -20,8 +21,8 @@ public class Explode extends BaseExplode {
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(SourceManager.defaultExplodes[step++], this.x, this.y, null);
-        if (step >= SourceManager.defaultExplodes.length) {
+        g.drawImage(SourceManager.sunExplodes[step++], this.x, this.y, null);
+        if (step >= SourceManager.sunExplodes.length) {
             tankFrame.getExplodes().remove(this);
         }
     }
