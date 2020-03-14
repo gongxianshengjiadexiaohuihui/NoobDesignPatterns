@@ -30,11 +30,11 @@ public class DefaultFireStrategy implements FireStrategy {
                 break;
             case LFFT:
                 bulletX = tank.x - weightBullet;
-                bulletY = tank.y + weightTank / 2 - weightBullet / 2;
+                bulletY = tank.y + weightTank / 2 - heightBullet / 2;
                 break;
             case RIGHT:
                 bulletX = tank.x + weightTank;
-                bulletY = tank.y + weightTank / 2 - weightBullet / 2;
+                bulletY = tank.y + weightTank / 2 - heightBullet / 2;
                 break;
             default:
                 break;

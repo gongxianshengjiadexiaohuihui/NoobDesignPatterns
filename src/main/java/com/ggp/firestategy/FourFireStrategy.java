@@ -33,11 +33,11 @@ public class FourFireStrategy implements FireStrategy {
         Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.DOWN, tank.tankFrame, tank.group);
 
         bulletX = tank.x - weightBullet;
-        bulletY = tank.y + weightTank / 2 - weightBullet / 2;
+        bulletY = tank.y + weightTank / 2 - heightBullet / 2;
         Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.LFFT, tank.tankFrame, tank.group);
 
         bulletX = tank.x + weightTank;
-        bulletY = tank.y + weightTank / 2 - weightBullet / 2;
+        bulletY = tank.y + weightTank / 2 - heightBullet / 2;
         Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.RIGHT, tank.tankFrame, tank.group);
         /**
          * 红方坦克开火声音
