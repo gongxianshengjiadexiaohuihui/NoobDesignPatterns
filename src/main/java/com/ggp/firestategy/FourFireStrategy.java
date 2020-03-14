@@ -5,7 +5,6 @@ import com.ggp.common.Config;
 import com.ggp.common.DirectionEnum;
 import com.ggp.common.Group;
 import com.ggp.factory.BaseTank;
-import com.ggp.organ.Bullet;
 
 /**
  * @Author:GGP

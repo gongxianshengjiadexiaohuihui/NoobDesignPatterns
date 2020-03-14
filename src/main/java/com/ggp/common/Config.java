@@ -1,6 +1,5 @@
 package com.ggp.common;
 
-import com.ggp.factory.DefaultGameFactory;
 import com.ggp.factory.GameFactory;
 import com.ggp.factory.SunGameFactory;
 import com.ggp.firestategy.DefaultFireStrategy;
