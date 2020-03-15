@@ -1,8 +1,10 @@
-package com.ggp.organ;
+package com.ggp.organ.default_type;
 
 import com.ggp.common.*;
-import com.ggp.factory.BaseTank;
-import com.ggp.view.TankFrame;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.common.enums.GroupEnum;
+import com.ggp.organ.BaseTank;
+import com.ggp.source.ImageManager;
 
 import java.awt.*;
 
@@ -12,12 +14,11 @@ import java.awt.*;
  * @Description:
  */
 public class Tank extends BaseTank {
-    public Tank(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
+    public Tank(int x, int y, DirectionEnum dir, GroupEnum groupEnum) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankFrame = tankFrame;
-        this.group = group;
+        this.groupEnum = groupEnum;
 
         rectangle.x = this.x;
         rectangle.y = this.y;
@@ -26,7 +27,7 @@ public class Tank extends BaseTank {
         /**
          * 红方坦克开火策略从配置文件读取
          */
-        if(group  == Group.RED){
+        if(groupEnum == GroupEnum.RED){
             fireStrategy = Config.getFireStrategy();
         }
     }
@@ -34,20 +35,20 @@ public class Tank extends BaseTank {
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            this.tankFrame.getEnemyTanks().remove(this);
+            Config.gameModel.enemyTanks.remove(this);
         }
         switch (dir) {
             case LFFT:
-                g.drawImage(this.group == Group.RED ? SourceManager.TankL : SourceManager.enemyTankL, x, y, null);
+                g.drawImage( ImageManager.TankL , x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(this.group == Group.RED ? SourceManager.TankR : SourceManager.enemyTankR, x, y, null);
+                g.drawImage( ImageManager.TankR , x, y, null);
                 break;
             case UP:
-                g.drawImage(this.group == Group.RED ? SourceManager.TankU : SourceManager.enemyTankU, x, y, null);
+                g.drawImage( ImageManager.TankU , x, y, null);
                 break;
             case DOWN:
-                g.drawImage(this.group == Group.RED ? SourceManager.TankD : SourceManager.enemyTankD, x, y, null);
+                g.drawImage( ImageManager.TankD , x, y, null);
                 break;
             default:
                 break;

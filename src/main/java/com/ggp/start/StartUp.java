@@ -1,9 +1,8 @@
 package com.ggp.start;
 
 
-import com.ggp.common.*;
-import com.ggp.organ.Tank;
-import com.ggp.view.TankFrame;
+import com.ggp.source.AudioManager;
+import com.ggp.view.GameFrame;
 
 /**
  * @Author:GGP
@@ -12,15 +11,12 @@ import com.ggp.view.TankFrame;
  */
 public class StartUp {
     public static void main(String[] args) throws InterruptedException {
-        TankFrame tankFrame = new TankFrame();
-        int enemy = Integer.valueOf((String) Config.get("initEnemyCount"));
-        for (int i = 0; i <enemy; i++) {
-            tankFrame.getEnemyTanks().add(Config.gameFactory.createTank(50*i,100,DirectionEnum.DOWN,tankFrame,Group.BLUE));
-        }
-        new Thread(()-> new Audio("audio/war1.wav").loop()).start();
+        GameFrame frame = new GameFrame();
+
+        new Thread(()-> new AudioManager("audio/war1.wav").loop()).start();
         while (true){
             Thread.sleep(100);
-            tankFrame.repaint();
+            frame.repaint();
         }
     }
 }

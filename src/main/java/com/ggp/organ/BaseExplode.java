@@ -1,6 +1,7 @@
-package com.ggp.factory;
+package com.ggp.organ;
 
-import com.ggp.view.TankFrame;
+import com.ggp.common.Config;
+import com.ggp.modefacade.GameModel;
 
 import java.awt.*;
 
@@ -14,10 +15,6 @@ public abstract class BaseExplode {
      * 坐标
      */
     protected int x, y;
-    /**
-     * 持有对象
-     */
-    protected TankFrame tankFrame;
     /**
      * 记录步数
      */

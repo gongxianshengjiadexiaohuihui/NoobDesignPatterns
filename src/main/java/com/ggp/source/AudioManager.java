@@ -1,10 +1,10 @@
 
-package com.ggp.common;
+package com.ggp.source;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
 
-public class Audio {
+public class AudioManager {
 
 	byte[] b = new byte[1024 * 1024 * 15];
 
@@ -37,9 +37,9 @@ public class Audio {
 
 	private AudioInputStream audioInputStream = null;
 
-	public Audio(String fileName) {
+	public AudioManager(String fileName) {
 		try {
-			audioInputStream = AudioSystem.getAudioInputStream(Audio.class.getClassLoader().getResource(fileName));
+			audioInputStream = AudioSystem.getAudioInputStream(AudioManager.class.getClassLoader().getResource(fileName));
 			audioFormat = audioInputStream.getFormat();
 			dataLine_info = new DataLine.Info(SourceDataLine.class, audioFormat);
 			sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLine_info);
@@ -83,8 +83,8 @@ public class Audio {
 	}
 
 	public static void main(String[] args) {
-		// Audio a = new Audio("audio/explode.wav");
-		Audio a = new Audio("audio/war1.wav");
+		// AudioManager a = new AudioManager("audio/explode.wav");
+		AudioManager a = new AudioManager("audio/war1.wav");
 		a.loop();
 
 	}

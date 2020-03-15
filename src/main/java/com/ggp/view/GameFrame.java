@@ -2,40 +2,25 @@ package com.ggp.view;
 
 import com.ggp.common.Config;
 import com.ggp.common.Constant;
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
-import com.ggp.factory.*;
-import com.ggp.organ.Tank;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.modefacade.GameModel;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author:GGP
  * @Date:2020/3/9 19:32
  * @Description:
  */
-public class TankFrame extends Frame {
-    BaseTank myTank = Config.gameFactory.createTank(200, 200,DirectionEnum.DOWN, this,Group.RED);
-    /**
-     * 所有子弹
-     */
-    List<BaseBullet> bullets = new ArrayList<>();
-    /**
-     * 敌方坦克
-     */
-    List<BaseTank> enemyTanks = new ArrayList<>();
-    /**
-     * 所有爆炸
-     */
-    List<BaseExplode> explodes = new ArrayList<>();
+public class GameFrame extends Frame {
+   
+    public GameModel model = Config.gameModel;
 
-    public TankFrame() {
+    public GameFrame() {
         /**
          * 页面属性
          */
@@ -57,33 +42,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        myTank.paint(g);
-        /**
-         * 画子弹
-         */
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).paint(g);
-        }
-        /**
-         * 画敌方坦克
-         */
-        for (int i = 0; i < enemyTanks.size(); i++) {
-            enemyTanks.get(i).paint(g);
-        }
-        /**
-         * 画爆炸
-         */
-        for (int i = 0; i <explodes.size() ; i++) {
-            explodes.get(i).paint(g);
-        }
-        /**
-         * 检测子弹撞击
-         */
-        for (int i = 0; i < bullets.size(); i++) {
-            for (int j = 0; j < enemyTanks.size(); j++) {
-                bullets.get(i).collideWith(enemyTanks.get(j));
-            }
-        }
+      model.paint(g);
     }
 
     /**
@@ -158,7 +117,7 @@ public class TankFrame extends Frame {
                     isD = false;
                     break;
                 case KeyEvent.VK_CONTROL:
-                    myTank.fire();
+                    model.getMainTank().fire();
                     break;
                 default:
                     break;
@@ -171,39 +130,27 @@ public class TankFrame extends Frame {
              * 判断是否移动
              */
             if (!isL && !isR && !isU && !isD) {
-                myTank.moving = false;
+                model.getMainTank().moving = false;
             } else {
-                myTank.moving = true;
+                model.getMainTank().moving = true;
             }
             /**
              * 判断方向
              */
             if (isL) {
-                myTank.dir = DirectionEnum.LFFT;
+                model.getMainTank().dir = DirectionEnum.LFFT;
             }
             if (isR) {
-                myTank.dir = DirectionEnum.RIGHT;
+                model.getMainTank().dir = DirectionEnum.RIGHT;
             }
             if (isU) {
-                myTank.dir = DirectionEnum.UP;
+                model.getMainTank().dir = DirectionEnum.UP;
             }
             if (isD) {
-                myTank.dir = DirectionEnum.DOWN;
+                model.getMainTank().dir = DirectionEnum.DOWN;
             }
 
         }
-    }
-
-    public List<BaseBullet> getBullets() {
-        return bullets;
-    }
-
-    public List<BaseTank> getEnemyTanks() {
-        return enemyTanks;
-    }
-
-    public List<BaseExplode> getExplodes() {
-        return explodes;
     }
 
 }

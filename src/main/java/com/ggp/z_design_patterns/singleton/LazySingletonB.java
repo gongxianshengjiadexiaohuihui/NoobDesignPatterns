@@ -3,12 +3,15 @@ package com.ggp.z_design_patterns.singleton;
 /**
  * @Author:GGP
  * @Date:2020/3/12 19:14
- * @Description: 懒汉 单例
+ * @Description: 懒汉 单例  DCL Double Check  Lock
  */
 public class LazySingletonB {
     /**
      * 加volatile的原因 是
      * jvm在优化的时候会进行指令重排，volatile能够防止指令重排
+     *
+     * 初始化分  new   dup  init   aload_1    init和aload指令可以互换
+     * dup从栈底复制一个引用，这个引用用于初始化
      */
     private static volatile LazySingletonB INSTANCE ;
     private LazySingletonB(){

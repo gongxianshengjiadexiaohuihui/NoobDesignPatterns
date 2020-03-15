@@ -1,9 +1,9 @@
 package com.ggp.firestategy;
 
-import com.ggp.common.Audio;
+import com.ggp.source.AudioManager;
 import com.ggp.common.Config;
-import com.ggp.common.Group;
-import com.ggp.factory.BaseTank;
+import com.ggp.common.enums.GroupEnum;
+import com.ggp.organ.BaseTank;
 
 /**
  * @Author:GGP
@@ -39,13 +39,13 @@ public class DefaultFireStrategy implements FireStrategy {
             default:
                 break;
         }
-       Config.gameFactory.createBullet(bulletX, bulletY, tank.dir, tank.tankFrame, tank.group);
+       Config.gameFactory.createBullet(bulletX, bulletY, tank.dir, tank.groupEnum);
         /**
          * 红方坦克开火声音
          */
-        if(tank.group == Group.RED){
+        if(tank.groupEnum == GroupEnum.RED){
             new Thread(()->{
-                new Audio("audio/tank_fire.wav").play();
+                new AudioManager("audio/tank_fire.wav").play();
             }).start();
         }
     }

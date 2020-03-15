@@ -1,9 +1,11 @@
-package com.ggp.factory;
+package com.ggp.organ;
 
 import com.ggp.common.*;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.common.enums.GroupEnum;
 import com.ggp.firestategy.DefaultFireStrategy;
 import com.ggp.firestategy.FireStrategy;
-import com.ggp.view.TankFrame;
+import com.ggp.modefacade.GameModel;
 
 import java.awt.*;
 import java.util.Random;
@@ -31,13 +33,9 @@ public abstract class BaseTank {
      */
     public boolean living = true;
     /**
-     * 持有tankFrame的对象
-     */
-    public TankFrame tankFrame;
-    /**
      * 属于那方,默认蓝方
      */
-    public Group group = Group.BLUE;
+    public GroupEnum groupEnum = GroupEnum.BLUE;
 
     public Random random = new Random();
     /**
@@ -54,7 +52,6 @@ public abstract class BaseTank {
      * 开火策略  默认策略
      */
     public FireStrategy fireStrategy = new DefaultFireStrategy();
-
 
 
     /**
@@ -86,10 +83,10 @@ public abstract class BaseTank {
         rectangle.x = x;
         rectangle.y = y;
 
-        if (this.group == Group.BLUE && random.nextInt(100) > 95) {
+        if (this.groupEnum == GroupEnum.BLUE && random.nextInt(100) > 95) {
             this.fire();
         }
-        if (this.group == Group.BLUE) {
+        if (this.groupEnum == GroupEnum.BLUE) {
             this.rotateDir();
         }
         this.boundsCheck();
@@ -126,7 +123,7 @@ public abstract class BaseTank {
     }
 
     public void die() {
-        living = false;
+        this.living = false;
     }
 
     /**

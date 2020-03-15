@@ -1,11 +1,10 @@
-package com.ggp.factory;
+package com.ggp.organ;
 
 import com.ggp.common.Config;
 import com.ggp.common.Constant;
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
-import com.ggp.organ.Tank;
-import com.ggp.view.TankFrame;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.common.enums.GroupEnum;
+import com.ggp.modefacade.GameModel;
 
 import java.awt.*;
 
@@ -28,13 +27,9 @@ public abstract class BaseBullet {
      */
     public boolean living = true;
     /**
-     * 持有主界面对象
-     */
-    public TankFrame tankFrame;
-    /**
      * 子弹属于那方
      */
-    public Group group = Group.BLUE;
+    public GroupEnum groupEnum = GroupEnum.BLUE;
     /**
      * 图片大小
      */
@@ -84,7 +79,7 @@ public abstract class BaseBullet {
         /**
          * 判断子弹是否击中坦克
          */
-        if (this.group == tank.group) {
+        if (this.groupEnum == tank.groupEnum) {
             return;
         }
         if (this.rectangle.intersects(tank.rectangle)) {
@@ -93,7 +88,7 @@ public abstract class BaseBullet {
             int ex,ey;
             ex = tank.x + weight/2 - Config.gameFactory.explodeWeight/2;
             ey = tank.y + height/2 - Config.gameFactory.explodeHeight/2;
-            tankFrame.getExplodes().add(Config.gameFactory.createExplode(ex,ey,tankFrame));
+            Config.gameModel.explodes.add(Config.gameFactory.createExplode(ex,ey));
         }
     }
 

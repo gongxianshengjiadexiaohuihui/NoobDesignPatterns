@@ -1,10 +1,10 @@
-package com.ggp.organ;
+package com.ggp.organ.sun_type;
 
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
-import com.ggp.common.SourceManager;
-import com.ggp.factory.BaseBullet;
-import com.ggp.view.TankFrame;
+import com.ggp.common.Config;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.common.enums.GroupEnum;
+import com.ggp.source.ImageManager;
+import com.ggp.organ.BaseBullet;
 
 import java.awt.*;
 
@@ -15,12 +15,11 @@ import java.awt.*;
  */
 public class SunBullet extends BaseBullet {
 
-    public SunBullet(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group) {
+    public SunBullet(int x, int y, DirectionEnum dir, GroupEnum groupEnum) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tankFrame = tankFrame;
-        this.group = group;
+        this.groupEnum = groupEnum;
 
         rectangle.x = this.x;
         rectangle.y = this.y;
@@ -30,26 +29,26 @@ public class SunBullet extends BaseBullet {
         /**
          * 添加子弹
          */
-        this.tankFrame.getBullets().add(this);
+        Config.gameModel.bullets.add(this);
     }
 
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            this.tankFrame.getBullets().remove(this);
+            Config.gameModel.bullets.remove(this);
         }
         switch (dir) {
             case LFFT:
-                g.drawImage(SourceManager.sunBulletL, x, y, null);
+                g.drawImage(ImageManager.sunBulletL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(SourceManager.sunBulletR, x, y, null);
+                g.drawImage(ImageManager.sunBulletR, x, y, null);
                 break;
             case UP:
-                g.drawImage(SourceManager.sunBulletU, x, y, null);
+                g.drawImage(ImageManager.sunBulletU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(SourceManager.sunBulletD, x, y, null);
+                g.drawImage(ImageManager.sunBulletD, x, y, null);
                 break;
             default:
                 break;

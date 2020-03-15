@@ -1,8 +1,10 @@
-package com.ggp.factory;
+package com.ggp.gamefactory;
 
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
-import com.ggp.view.TankFrame;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.common.enums.GroupEnum;
+import com.ggp.organ.BaseBullet;
+import com.ggp.organ.BaseExplode;
+import com.ggp.organ.BaseTank;
 
 /**
  * @Author:GGP
@@ -40,29 +42,26 @@ public abstract class GameFactory {
      * @param x 横坐标
      * @param y 纵坐标
      * @param dir 方向
-     * @param tankFrame 持有主界面对象
-     * @param group  分组
+     * @param groupEnum  分组
      * @return
      */
-    public abstract BaseTank createTank(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group);
+    public abstract BaseTank createTank(int x, int y, DirectionEnum dir, GroupEnum groupEnum);
 
     /**
      * 创建爆炸
      * @param x  横坐标
      * @param y  纵坐标
-     * @param tankFrame 持有主界面对象
      * @return
      */
-    public abstract BaseExplode createExplode(int x, int y, TankFrame tankFrame);
+    public abstract BaseExplode createExplode(int x, int y);
 
     /**
      * 创建子弹
      * @param x  横坐标
      * @param y  纵坐标
      * @param dir  方向
-     * @param tankFrame  持有主界面对象
-     * @param group  分组
+     * @param groupEnum  分组
      * @return
      */
-    public abstract BaseBullet createBullet(int x, int y, DirectionEnum dir, TankFrame tankFrame, Group group);
+    public abstract BaseBullet createBullet(int x, int y, DirectionEnum dir, GroupEnum groupEnum);
 }

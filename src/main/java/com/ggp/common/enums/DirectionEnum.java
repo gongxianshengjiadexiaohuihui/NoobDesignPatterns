@@ -1,4 +1,4 @@
-package com.ggp.common;
+package com.ggp.common.enums;
 
 /**
  * @Author:GGP

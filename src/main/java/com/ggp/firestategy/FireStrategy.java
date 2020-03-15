@@ -1,6 +1,6 @@
 package com.ggp.firestategy;
 
-import com.ggp.factory.BaseTank;
+import com.ggp.organ.BaseTank;
 
 /**
  * @Author:GGP

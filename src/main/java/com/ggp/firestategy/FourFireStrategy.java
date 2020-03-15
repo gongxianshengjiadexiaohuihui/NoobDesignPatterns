@@ -1,10 +1,10 @@
 package com.ggp.firestategy;
 
-import com.ggp.common.Audio;
+import com.ggp.source.AudioManager;
 import com.ggp.common.Config;
-import com.ggp.common.DirectionEnum;
-import com.ggp.common.Group;
-import com.ggp.factory.BaseTank;
+import com.ggp.common.enums.DirectionEnum;
+import com.ggp.common.enums.GroupEnum;
+import com.ggp.organ.BaseTank;
 
 /**
  * @Author:GGP
@@ -25,25 +25,25 @@ public class FourFireStrategy implements FireStrategy {
          */
         bulletX = tank.x + weightTank / 2 - weightBullet / 2;
         bulletY = tank.y - heightBullet;
-        Config.gameFactory.createBullet(bulletX, bulletY,DirectionEnum.UP, tank.tankFrame, tank.group);
+        Config.gameFactory.createBullet(bulletX, bulletY,DirectionEnum.UP, tank.groupEnum);
 
         bulletX = tank.x + weightTank / 2 - weightBullet / 2;
         bulletY = tank.y + heightTank;
-        Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.DOWN, tank.tankFrame, tank.group);
+        Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.DOWN, tank.groupEnum);
 
         bulletX = tank.x - weightBullet;
         bulletY = tank.y + weightTank / 2 - heightBullet / 2;
-        Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.LFFT, tank.tankFrame, tank.group);
+        Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.LFFT, tank.groupEnum);
 
         bulletX = tank.x + weightTank;
         bulletY = tank.y + weightTank / 2 - heightBullet / 2;
-        Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.RIGHT, tank.tankFrame, tank.group);
+        Config.gameFactory.createBullet(bulletX, bulletY, DirectionEnum.RIGHT,  tank.groupEnum);
         /**
          * 红方坦克开火声音
          */
-        if (tank.group == Group.RED) {
+        if (tank.groupEnum == GroupEnum.RED) {
             new Thread(() -> {
-                new Audio("audio/tank_fire.wav").play();
+                new AudioManager("audio/tank_fire.wav").play();
             }).start();
         }
     }
