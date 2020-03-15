@@ -2,9 +2,9 @@ package com.ggp.common;
 
 import com.ggp.gamefactory.GameFactory;
 import com.ggp.gamefactory.SunGameFactory;
-import com.ggp.firestategy.DefaultFireStrategy;
-import com.ggp.firestategy.FireStrategy;
-import com.ggp.firestategy.FourFireStrategy;
+import com.ggp.firestrategy.DefaultFireStrategy;
+import com.ggp.firestrategy.FireStrategy;
+import com.ggp.firestrategy.FourFireStrategy;
 import com.ggp.modefacade.GameModel;
 
 import java.io.IOException;
@@ -28,28 +28,34 @@ public class Config {
      * 游戏模型 --- 门面
      */
     public static GameModel gameModel;
+
+    public static int enemyCount;
     static {
         try {
             properties.load(Config.class.getClassLoader().getResourceAsStream("config.properties"));
+            enemyCount = getInt("initEnemyCount");
             /**
              * gameModel初始化用到config了，所以在解析完配置爱文件后初始化它
              */
             gameModel = new GameModel();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static String get(String key){
+    public static String getString(String key){
         return (String) properties.get(key);
     }
-
+    public static int getInt(String key){
+        return Integer.valueOf(getString(key));
+    }
     /**
      * 获取主站坦克开火策略
      * @return
      */
     public static FireStrategy getFireStrategy(){
-        int i = Integer.valueOf(get("fireStrategy"));
+        int i = Integer.valueOf(getString("fireStrategy"));
         if(i == 2){
             return new FourFireStrategy();
         }

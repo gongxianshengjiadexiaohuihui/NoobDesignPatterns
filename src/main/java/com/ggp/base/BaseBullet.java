@@ -1,10 +1,9 @@
-package com.ggp.organ;
+package com.ggp.base;
 
 import com.ggp.common.Config;
 import com.ggp.common.Constant;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
-import com.ggp.modefacade.GameModel;
 
 import java.awt.*;
 
@@ -13,11 +12,7 @@ import java.awt.*;
  * @Date:2020/3/14 15:12
  * @Description:
  */
-public abstract class BaseBullet {
-    /**
-     * 子弹坐标
-     */
-    public int x, y;
+public abstract class BaseBullet extends GameObject{
     /**
      * 子弹方向
      */
@@ -88,7 +83,7 @@ public abstract class BaseBullet {
             int ex,ey;
             ex = tank.x + weight/2 - Config.gameFactory.explodeWeight/2;
             ey = tank.y + height/2 - Config.gameFactory.explodeHeight/2;
-            Config.gameModel.explodes.add(Config.gameFactory.createExplode(ex,ey));
+            Config.gameModel.add(Config.gameFactory.createExplode(ex,ey));
         }
     }
 
@@ -96,9 +91,5 @@ public abstract class BaseBullet {
         living =false;
     }
 
-    /**
-     * 绘制
-     * @param g
-     */
-   public  abstract void paint(Graphics g);
+
 }

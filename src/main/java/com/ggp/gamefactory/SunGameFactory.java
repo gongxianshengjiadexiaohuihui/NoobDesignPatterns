@@ -2,9 +2,9 @@ package com.ggp.gamefactory;
 
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
-import com.ggp.organ.BaseBullet;
-import com.ggp.organ.BaseExplode;
-import com.ggp.organ.BaseTank;
+import com.ggp.base.BaseBullet;
+import com.ggp.base.BaseExplode;
+import com.ggp.base.BaseTank;
 import com.ggp.source.ImageManager;
 import com.ggp.organ.sun_type.SunBullet;
 import com.ggp.organ.sun_type.SunExplode;

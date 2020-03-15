@@ -1,11 +1,10 @@
-package com.ggp.organ;
+package com.ggp.base;
 
 import com.ggp.common.*;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
-import com.ggp.firestategy.DefaultFireStrategy;
-import com.ggp.firestategy.FireStrategy;
-import com.ggp.modefacade.GameModel;
+import com.ggp.firestrategy.DefaultFireStrategy;
+import com.ggp.firestrategy.FireStrategy;
 
 import java.awt.*;
 import java.util.Random;
@@ -15,11 +14,7 @@ import java.util.Random;
  * @Date:2020/3/14 15:11
  * @Description:
  */
-public abstract class BaseTank {
-    /**
-     * 坦克坐标
-     */
-    public int x, y;
+public abstract class BaseTank extends GameObject{
     /**
      * 坦克方向
      */
@@ -126,11 +121,6 @@ public abstract class BaseTank {
         this.living = false;
     }
 
-    /**
-     * 绘制
-     * @param g
-     */
-    public abstract void paint(Graphics g);
 
     /**
      * 发射子弹

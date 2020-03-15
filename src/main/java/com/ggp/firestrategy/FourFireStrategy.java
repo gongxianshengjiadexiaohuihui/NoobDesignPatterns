@@ -1,10 +1,10 @@
-package com.ggp.firestategy;
+package com.ggp.firestrategy;
 
 import com.ggp.source.AudioManager;
 import com.ggp.common.Config;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
-import com.ggp.organ.BaseTank;
+import com.ggp.base.BaseTank;
 
 /**
  * @Author:GGP

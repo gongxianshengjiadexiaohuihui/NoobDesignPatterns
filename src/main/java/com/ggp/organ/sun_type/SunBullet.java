@@ -4,7 +4,7 @@ import com.ggp.common.Config;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
 import com.ggp.source.ImageManager;
-import com.ggp.organ.BaseBullet;
+import com.ggp.base.BaseBullet;
 
 import java.awt.*;
 
@@ -29,13 +29,13 @@ public class SunBullet extends BaseBullet {
         /**
          * 添加子弹
          */
-        Config.gameModel.bullets.add(this);
+        Config.gameModel.add(this);
     }
 
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            Config.gameModel.bullets.remove(this);
+            Config.gameModel.remove(this);
         }
         switch (dir) {
             case LFFT:

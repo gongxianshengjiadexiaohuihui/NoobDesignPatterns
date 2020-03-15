@@ -2,7 +2,7 @@ package com.ggp.organ.default_type;
 
 import com.ggp.common.Config;
 import com.ggp.source.ImageManager;
-import com.ggp.organ.BaseExplode;
+import com.ggp.base.BaseExplode;
 
 import java.awt.*;
 
@@ -21,7 +21,7 @@ public class Explode extends BaseExplode {
     public void paint(Graphics g) {
         g.drawImage(ImageManager.defaultExplodes[step++], this.x, this.y, null);
         if (step >= ImageManager.defaultExplodes.length) {
-            Config.gameModel.explodes.remove(this);
+            Config.gameModel.remove(this);
         }
     }
 }

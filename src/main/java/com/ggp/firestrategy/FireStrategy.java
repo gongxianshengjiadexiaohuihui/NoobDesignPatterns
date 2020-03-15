@@ -1,6 +1,6 @@
-package com.ggp.firestategy;
+package com.ggp.firestrategy;
 
-import com.ggp.organ.BaseTank;
+import com.ggp.base.BaseTank;
 
 /**
  * @Author:GGP

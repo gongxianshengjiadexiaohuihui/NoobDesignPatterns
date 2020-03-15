@@ -3,7 +3,7 @@ package com.ggp.organ.default_type;
 import com.ggp.common.*;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
-import com.ggp.organ.BaseTank;
+import com.ggp.base.BaseTank;
 import com.ggp.source.ImageManager;
 
 import java.awt.*;
@@ -35,7 +35,7 @@ public class Tank extends BaseTank {
     @Override
     public void paint(Graphics g) {
         if (!living) {
-            Config.gameModel.enemyTanks.remove(this);
+            Config.gameModel.remove(this);
         }
         switch (dir) {
             case LFFT:
