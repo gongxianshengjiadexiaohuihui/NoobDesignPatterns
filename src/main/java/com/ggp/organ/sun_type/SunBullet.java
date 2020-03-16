@@ -3,6 +3,7 @@ package com.ggp.organ.sun_type;
 import com.ggp.common.Config;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
+import com.ggp.decorator.RectDecorator;
 import com.ggp.source.ImageManager;
 import com.ggp.base.BaseBullet;
 
@@ -29,7 +30,7 @@ public class SunBullet extends BaseBullet {
         /**
          * 添加子弹
          */
-        Config.gameModel.add(this);
+        Config.gameModel.add(new RectDecorator(this));
     }
 
     @Override

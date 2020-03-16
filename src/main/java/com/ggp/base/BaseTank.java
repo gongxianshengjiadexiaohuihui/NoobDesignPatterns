@@ -14,7 +14,7 @@ import java.util.Random;
  * @Date:2020/3/14 15:11
  * @Description:
  */
-public abstract class BaseTank extends GameObject{
+public abstract class BaseTank extends GameObject {
     /**
      * 坦克方向
      */
@@ -33,11 +33,7 @@ public abstract class BaseTank extends GameObject{
     public GroupEnum groupEnum = GroupEnum.BLUE;
 
     public Random random = new Random();
-    /**
-     * 图片大小
-     */
-    public int weight = Config.gameFactory.tankWeight;
-    public int height = Config.gameFactory.tankHeight;
+
     /**
      * 区域
      */
@@ -48,6 +44,13 @@ public abstract class BaseTank extends GameObject{
      */
     public FireStrategy fireStrategy = new DefaultFireStrategy();
 
+    public BaseTank() {
+        /**
+         * 图片大小
+         */
+        weight = Config.gameFactory.tankWeight;
+        height = Config.gameFactory.tankHeight;
+    }
 
     /**
      * 坦克移动
@@ -110,6 +113,7 @@ public abstract class BaseTank extends GameObject{
 
     /**
      * 碰撞检测
+     *
      * @param tank
      */
     public void collideWith(BaseTank tank) {

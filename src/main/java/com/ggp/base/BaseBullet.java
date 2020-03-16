@@ -12,7 +12,7 @@ import java.awt.*;
  * @Date:2020/3/14 15:12
  * @Description:
  */
-public abstract class BaseBullet extends GameObject{
+public abstract class BaseBullet extends GameObject {
     /**
      * 子弹方向
      */
@@ -25,15 +25,20 @@ public abstract class BaseBullet extends GameObject{
      * 子弹属于那方
      */
     public GroupEnum groupEnum = GroupEnum.BLUE;
-    /**
-     * 图片大小
-     */
-    public int weight = Config.gameFactory.bulletWeight;
-    public int height = Config.gameFactory.bulletHeight;
+
     /**
      * 区域
      */
     public Rectangle rectangle = new Rectangle();
+
+    public BaseBullet() {
+        /**
+         * 图片大小
+         */
+        weight = Config.gameFactory.bulletWeight;
+        height = Config.gameFactory.bulletHeight;
+    }
+
     /**
      * 子弹移动
      */
@@ -61,7 +66,8 @@ public abstract class BaseBullet extends GameObject{
         rectangle.x = x;
         rectangle.y = y;
     }
-    protected void check(){
+
+    protected void check() {
         /**
          * 边界值
          */
@@ -72,7 +78,7 @@ public abstract class BaseBullet extends GameObject{
     }
 
     public void die() {
-        living =false;
+        living = false;
     }
 
 
