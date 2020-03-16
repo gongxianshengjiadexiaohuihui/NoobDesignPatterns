@@ -7,7 +7,7 @@ import com.ggp.organ.Wall;
 /**
  * @Author:GGP
  * @Date:2020/3/16 20:41
- * @Description:
+ * @Description: 子弹和墙的碰撞
  */
 public class BulletWallCollide implements Collide {
 

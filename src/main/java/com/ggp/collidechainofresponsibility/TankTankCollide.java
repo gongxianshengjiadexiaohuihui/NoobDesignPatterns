@@ -7,7 +7,7 @@ import com.ggp.common.enums.DirectionEnum;
 /**
  * @Author:GGP
  * @Date:2020/3/16 18:58
- * @Description:
+ * @Description: 坦克和坦克的碰撞
  */
 public class TankTankCollide implements Collide{
     @Override

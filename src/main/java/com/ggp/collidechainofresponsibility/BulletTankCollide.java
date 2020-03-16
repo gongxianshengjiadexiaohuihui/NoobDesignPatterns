@@ -8,7 +8,7 @@ import com.ggp.common.Config;
 /**
  * @Author:GGP
  * @Date:2020/3/15 23:29
- * @Description:
+ * @Description: 子弹和坦克的碰撞
  */
 public class BulletTankCollide implements Collide {
     @Override
