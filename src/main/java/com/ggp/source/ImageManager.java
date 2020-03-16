@@ -43,6 +43,11 @@ public class ImageManager {
      */
     public static BufferedImage[] sunExplodes = new BufferedImage[11];
 
+    /**
+     * 墙的图片资源
+     */
+    public static BufferedImage wall;
+
     static {
         try {
             enemyTankU = ImageIO.read(ImageManager.class.getClassLoader().getResourceAsStream("images/tank/move/enemyTank.png"));
@@ -76,6 +81,8 @@ public class ImageManager {
             for (int i = 0; i < sunExplodes.length; i++) {
                 sunExplodes[i] = ImageIO.read(ImageManager.class.getClassLoader().getResourceAsStream("images/tank/explode/" + i + ".gif"));
             }
+
+            wall = ImageIO.read(ImageManager.class.getClassLoader().getResourceAsStream("images/wall/wall.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -37,7 +37,7 @@ public class Config {
             /**
              * gameModel初始化用到config了，所以在解析完配置爱文件后初始化它
              */
-            gameModel = new GameModel();
+            gameModel = GameModel.getInstance();
 
         } catch (IOException e) {
             e.printStackTrace();

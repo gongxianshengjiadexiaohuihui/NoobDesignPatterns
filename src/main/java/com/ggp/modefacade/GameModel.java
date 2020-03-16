@@ -1,14 +1,12 @@
 package com.ggp.modefacade;
 
+import com.ggp.base.BaseTank;
 import com.ggp.base.GameObject;
-import com.ggp.collidechainofresponsibility.BulletTankCollide;
 import com.ggp.collidechainofresponsibility.CollideChain;
-import com.ggp.collidechainofresponsibility.TankTankCollide;
-import com.ggp.collidechainofresponsibility.Collide;
 import com.ggp.common.Config;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
-import com.ggp.base.BaseTank;
+import com.ggp.organ.Wall;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,11 +21,25 @@ public class GameModel {
     private BaseTank myTank = Config.gameFactory.createTank(200, 200,DirectionEnum.DOWN,GroupEnum.RED);
     private List<GameObject> objects = new ArrayList<>();
     private CollideChain chain  = new CollideChain();
-    public GameModel() {
+
+    /**
+     * 单例--懒加载
+     */
+    private static class Internal {
+        public static final GameModel INSTANCE = new GameModel();
+    }
+    public static GameModel getInstance(){
+        return Internal.INSTANCE;
+    }
+    private GameModel() {
         int enemy =Config.enemyCount;
         for (int i = 0; i <enemy; i++) {
             this.add(Config.gameFactory.createTank(100*i,50*i,DirectionEnum.DOWN,GroupEnum.BLUE));
         }
+            this.add(new Wall(450, 400));
+            this.add(new Wall(510,400));
+            this.add(new Wall(570,400));
+            this.add(new Wall(630,400));
     }
 
 
