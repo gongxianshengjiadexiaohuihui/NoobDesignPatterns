@@ -9,7 +9,7 @@ import com.ggp.base.GameObject;
  */
 public interface Collide {
     /**
-     *
+     * 碰撞检测
      * @param o1
      * @param o2
      */

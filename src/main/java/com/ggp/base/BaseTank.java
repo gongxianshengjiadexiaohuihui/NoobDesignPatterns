@@ -109,6 +109,25 @@ public abstract class BaseTank extends GameObject{
     }
 
     /**
+     * 碰撞检测
+     * @param tank
+     */
+    public void collideWith(BaseTank tank) {
+        /**
+         * 相同阵营，交换方向
+         */
+        if(this.groupEnum == tank.groupEnum) {
+            if (this.rectangle.intersects(tank.rectangle)) {
+                 DirectionEnum temp = tank.dir;
+                 tank.dir = this.dir;
+                 this.dir = temp;
+            }
+        }else{
+             //todo
+        }
+    }
+
+    /**
      * 旋转方向
      */
     protected void rotateDir() {
