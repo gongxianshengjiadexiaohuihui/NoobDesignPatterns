@@ -70,24 +70,8 @@ public abstract class BaseBullet extends GameObject{
         }
 
     }
-    public void collideWith(BaseTank tank) {
-        /**
-         * 判断子弹是否击中坦克
-         */
-        if (this.groupEnum == tank.groupEnum) {
-            return;
-        }
-        if (this.rectangle.intersects(tank.rectangle)) {
-            this.die();
-            tank.die();
-            int ex,ey;
-            ex = tank.x + weight/2 - Config.gameFactory.explodeWeight/2;
-            ey = tank.y + height/2 - Config.gameFactory.explodeHeight/2;
-            Config.gameModel.add(Config.gameFactory.createExplode(ex,ey));
-        }
-    }
 
-    protected void die() {
+    public void die() {
         living =false;
     }
 

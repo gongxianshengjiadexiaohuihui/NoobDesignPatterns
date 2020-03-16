@@ -2,6 +2,7 @@ package com.ggp.collidechainofresponsibility;
 
 import com.ggp.base.BaseTank;
 import com.ggp.base.GameObject;
+import com.ggp.common.enums.DirectionEnum;
 
 /**
  * @Author:GGP
@@ -15,8 +16,19 @@ public class TankTankCollide implements Collide{
             BaseTank tank1 = (BaseTank) o1;
             BaseTank tank2 = (BaseTank) o2;
             tank1.collideWith(tank2);
-        }else {
-            return;
+            /**
+             * 相同阵营，交换方向
+             */
+            if(tank1.groupEnum == tank2.groupEnum) {
+                if (tank1.rectangle.intersects(tank2.rectangle)) {
+                    DirectionEnum temp = tank2.dir;
+                    tank2.dir = tank1.dir;
+                    tank1.dir = temp;
+                }
+            }else{
+                //todo
+            }
         }
+
     }
 }

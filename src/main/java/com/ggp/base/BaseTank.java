@@ -41,7 +41,7 @@ public abstract class BaseTank extends GameObject{
     /**
      * 区域
      */
-    protected Rectangle rectangle = new Rectangle();
+    public Rectangle rectangle = new Rectangle();
 
     /**
      * 开火策略  默认策略
@@ -113,18 +113,7 @@ public abstract class BaseTank extends GameObject{
      * @param tank
      */
     public void collideWith(BaseTank tank) {
-        /**
-         * 相同阵营，交换方向
-         */
-        if(this.groupEnum == tank.groupEnum) {
-            if (this.rectangle.intersects(tank.rectangle)) {
-                 DirectionEnum temp = tank.dir;
-                 tank.dir = this.dir;
-                 this.dir = temp;
-            }
-        }else{
-             //todo
-        }
+
     }
 
     /**
