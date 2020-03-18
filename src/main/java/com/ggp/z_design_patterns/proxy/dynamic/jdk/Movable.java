@@ -1,4 +1,4 @@
-package com.ggp.z_design_patterns.proxy.dynamic;
+package com.ggp.z_design_patterns.proxy.dynamic.jdk;
 
 /**
  * @Author:GGP

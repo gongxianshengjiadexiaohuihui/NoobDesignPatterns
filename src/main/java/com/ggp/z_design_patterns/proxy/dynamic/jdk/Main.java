@@ -1,4 +1,4 @@
-package com.ggp.z_design_patterns.proxy.dynamic;
+package com.ggp.z_design_patterns.proxy.dynamic.jdk;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -42,7 +42,7 @@ public class Main {
  *
  * package com.sun.proxy;
  *
- * import com.ggp.z_design_patterns.proxy.dynamic.Movable;
+ * import com.ggp.z_design_patterns.proxy.dynamic.jdk.Movable;
  * import java.lang.reflect.InvocationHandler;
  * import java.lang.reflect.Method;
  * import java.lang.reflect.Proxy;
@@ -101,7 +101,7 @@ public class Main {
  *     static {
  *         try {
  *             m1 = Class.forName("java.lang.Object").getMethod("equals", Class.forName("java.lang.Object"));
- *             m3 = Class.forName("com.ggp.z_design_patterns.proxy.dynamic.Movable").getMethod("move");
+ *             m3 = Class.forName("com.ggp.z_design_patterns.proxy.dynamic.jdk.Movable").getMethod("move");
  *             m2 = Class.forName("java.lang.Object").getMethod("toString");
  *             m0 = Class.forName("java.lang.Object").getMethod("hashCode");
  *         } catch (NoSuchMethodException var2) {

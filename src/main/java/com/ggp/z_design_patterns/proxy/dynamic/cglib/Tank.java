@@ -1,4 +1,5 @@
-package com.ggp.z_design_patterns.proxy.dynamic;
+package com.ggp.z_design_patterns.proxy.dynamic.cglib;
+
 
 import java.util.Random;
 
@@ -7,8 +8,7 @@ import java.util.Random;
  * @Date:2020/3/18 19:18
  * @Description:
  */
-public class Tank implements Movable {
-    @Override
+public class Tank {
     public void move() {
         System.out.println("tank move ba ba ba ...");
         try {
