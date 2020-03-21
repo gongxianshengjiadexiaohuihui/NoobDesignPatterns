@@ -119,6 +119,13 @@ public class GameFrame extends Frame {
                 case KeyEvent.VK_CONTROL:
                     model.getMainTank().fire();
                     break;
+                case KeyEvent.VK_S:
+                    model.save();
+                    break;
+                case KeyEvent.VK_V:
+                    model.recover();
+                    model = Config.gameModel;
+                    break;
                 default:
                     break;
             }

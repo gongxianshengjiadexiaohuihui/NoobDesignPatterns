@@ -4,11 +4,13 @@ import com.ggp.base.BaseTank;
 import com.ggp.base.GameObject;
 import com.ggp.collidechainofresponsibility.CollideChain;
 import com.ggp.common.Config;
+import com.ggp.common.Constant;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
 import com.ggp.organ.Wall;
 
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ import java.util.List;
  * @Date:2020/3/15 21:41
  * @Description: 对外是 门面（客服） 对内是调停者（居委会大妈）
  */
-public class GameModel {
+public class GameModel implements Serializable {
     private BaseTank myTank = Config.gameFactory.createTank(200, 200,DirectionEnum.DOWN,GroupEnum.RED);
     private List<GameObject> objects = new ArrayList<>();
     private CollideChain chain  = new CollideChain();
@@ -83,5 +85,49 @@ public class GameModel {
      */
     public void remove(GameObject object){
         objects.remove(object);
+    }
+
+    /**
+     * 记录快照
+     */
+    public void save(){
+        File file = new File(Constant.BACK_UP_PATH);
+        ObjectOutputStream oos= null;
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(null != oos){
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * 恢复快照
+     */
+    public void recover(){
+        File file = new File(Constant.BACK_UP_PATH);
+        ObjectInputStream ois= null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(file));
+            Config.gameModel = (GameModel)ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(null != ois){
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
