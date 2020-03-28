@@ -29,7 +29,6 @@ public class BulletTankCollide implements Collide {
             if (bullet.rectangle.intersects(tank.rectangle)) {
                 bullet.die();
                 tank.die();
-                //todo 加个绘制策略 区分多种风格的爆炸
                 int ex,ey;
                 ex = tank.x + tank.weight/2 - Config.gameFactory.explodeWeight/2;
                 ey = tank.y + tank.height/2 - Config.gameFactory.explodeHeight/2;

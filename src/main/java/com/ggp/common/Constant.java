@@ -29,8 +29,14 @@ public class Constant {
      */
     public static final Integer ENEMY_COUNT=5;
 
-
-
+    /**
+     * 默认ip
+     */
+    public static final String DEFAULT_IP="127.0.0.1";
+    /**
+     * 默认端口号
+     */
+    public static final int DEFFAULT_PORT = 9999;
 
     /**
      * 备份文件路径
