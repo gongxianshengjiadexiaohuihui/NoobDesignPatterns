@@ -20,7 +20,8 @@ import java.util.List;
  * @Description: 对外是 门面（客服） 对内是调停者（居委会大妈）
  */
 public class GameModel implements Serializable {
-    private BaseTank myTank = Config.gameFactory.createTank(200, 200,DirectionEnum.DOWN,GroupEnum.RED);
+    private Random random = new Random();
+    private BaseTank myTank = Config.gameFactory.createTank(random.nextInt(), random.nextInt(),DirectionEnum.DOWN,GroupEnum.RED);
     private Map<UUID,GameObject> objects = new HashMap<>();
     private CollideChain chain  = new CollideChain();
 
@@ -38,10 +39,13 @@ public class GameModel implements Serializable {
         for (int i = 0; i <enemy; i++) {
             this.add(Config.gameFactory.createTank(100*i,50*i,DirectionEnum.DOWN,GroupEnum.BLUE));
         }
+        myTank.name = "ggp";
+        this.add(myTank);
             this.add(new Wall(450, 400));
             this.add(new Wall(510,400));
             this.add(new Wall(570,400));
             this.add(new Wall(630,400));
+
     }
 
 
@@ -50,7 +54,6 @@ public class GameModel implements Serializable {
          * 碰撞检测要放在绘制之前，不然，绘制时候已经碰撞上了，此时改完方向之后 依然是碰撞状态
          */
         this.collideCheck();
-        myTank.paint(g);
         /**
          * 避免ConcurrentModificationException
          */

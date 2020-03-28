@@ -33,6 +33,10 @@ public abstract class BaseTank extends GameObject {
      * 属于那方,默认蓝方
      */
     public GroupEnum groupEnum = GroupEnum.BLUE;
+    /**
+     * tank名字
+     */
+    public String  name = "";
 
     public Random random = new Random();
 

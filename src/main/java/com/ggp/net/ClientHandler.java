@@ -1,5 +1,6 @@
 package com.ggp.net;
 
+import com.ggp.net.message.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -15,9 +16,8 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf byteBuf = (ByteBuf) msg;
-        byte[] result = new byte[byteBuf.readableBytes()];
-        System.out.println(new String(result));
+        Message message =(Message)msg;
+        message.handle();
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.ggp.net;
 
 import com.ggp.common.Constant;
+import com.ggp.net.message.Message;
+import com.ggp.net.message.MessageDecoder;
+import com.ggp.net.message.MessageEncoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -27,6 +30,9 @@ public class Client {
         bootstrap.handler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
+
+                ch.pipeline().addLast(new MessageEncoder());
+                ch.pipeline().addLast(new MessageDecoder());
                 ch.pipeline().addLast(new ClientHandler());
             }
         });
@@ -46,20 +52,8 @@ public class Client {
             e.printStackTrace();
         }
     }
-    public void sendMsg(String msg){
-        ByteBuf buf = Unpooled.copiedBuffer(msg.getBytes());
-        channel.writeAndFlush(buf);
+    public void sendMsg(Message message){
+        channel.writeAndFlush(message);
     }
 
-    public static void main(String[] args) throws InterruptedException {
-
-        new Thread(()->{
-            Client.INSTANCE.connect();
-        }).start();
-        /**
-         * 等客户端连接成功
-         */
-        Thread.sleep(1000);
-        Client.INSTANCE.sendMsg("hello");
-    }
 }

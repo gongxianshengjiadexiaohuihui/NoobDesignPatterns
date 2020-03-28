@@ -13,6 +13,17 @@ public class MessageEncoder extends MessageToByteEncoder<Message> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Message msg, ByteBuf out) throws Exception {
-        msg.handle();
+        /**
+         * 写入类型
+         */
+        out.writeInt(msg.getType().ordinal());
+        /**
+         * 写入数据长度
+         */
+        out.writeInt(msg.toBytes().length);
+        /**
+         * 写入数据
+         */
+        out.writeBytes(msg.toBytes());
     }
 }

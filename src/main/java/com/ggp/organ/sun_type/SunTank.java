@@ -53,6 +53,13 @@ public class SunTank extends BaseTank {
             default:
                 break;
         }
+        Color color = g.getColor();
+        g.setColor(Color.yellow);
+        /**
+         * 一个字符占7个像素
+         */
+        g.drawString(this.name,x+Config.gameFactory.tankWeight/2-this.name.length()*7/2,y);
+        g.setColor(color);
         this.move();
     }
     /**

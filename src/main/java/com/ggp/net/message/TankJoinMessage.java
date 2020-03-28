@@ -1,9 +1,11 @@
 package com.ggp.net.message;
 
 import com.ggp.base.BaseTank;
+import com.ggp.common.Config;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
 import com.ggp.common.enums.MessageTypeEnum;
+import com.ggp.modefacade.GameModel;
 
 import java.io.*;
 
@@ -17,18 +19,19 @@ public class TankJoinMessage extends Message {
     private int y;
     private DirectionEnum dir;
     private GroupEnum group;
-    private boolean living;
 
+    public TankJoinMessage(){}
     public TankJoinMessage(BaseTank tank) {
         this.x = tank.x;
         this.y = tank.y;
         this.dir = tank.dir;
         this.group = tank.groupEnum;
-        this.living = tank.living;
     }
+
 
     @Override
     public void handle() {
+        GameModel.getInstance().add(Config.gameFactory.createTank(this.x,this.y,this.dir,this.group));
     }
 
     @Override
@@ -40,7 +43,6 @@ public class TankJoinMessage extends Message {
             dos.writeInt(this.y);
             dos.writeInt(this.dir.ordinal());
             dos.writeInt(this.group.ordinal());
-            dos.writeBoolean(this.living);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +57,6 @@ public class TankJoinMessage extends Message {
             this.y = dis.readInt();
             this.dir = DirectionEnum.values()[dis.readInt()];
             this.group = GroupEnum.values()[dis.readInt()];
-            this.living = dis.readBoolean();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,7 +75,6 @@ public class TankJoinMessage extends Message {
                 ", y=" + y +
                 ", dir=" + dir +
                 ", group=" + group +
-                ", living=" + living +
                 '}';
     }
 }

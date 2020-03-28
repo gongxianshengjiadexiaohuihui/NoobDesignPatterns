@@ -1,6 +1,9 @@
 package com.ggp.start;
 
 
+import com.ggp.common.Config;
+import com.ggp.net.Client;
+import com.ggp.net.message.TankJoinMessage;
 import com.ggp.source.AudioManager;
 import com.ggp.view.GameFrame;
 
@@ -14,6 +17,9 @@ public class StartUp {
         GameFrame frame = new GameFrame();
 
         new Thread(()-> new AudioManager("audio/war1.wav").loop()).start();
+        new Thread(()->Client.INSTANCE.connect()).start();
+        Thread.sleep(100);
+        Client.INSTANCE.sendMsg(new TankJoinMessage(Config.gameModel.getMainTank()));
         while (true){
             Thread.sleep(100);
             frame.repaint();
