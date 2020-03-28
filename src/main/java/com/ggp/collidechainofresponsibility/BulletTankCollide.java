@@ -18,6 +18,7 @@ public class BulletTankCollide implements Collide {
         o2 = removeDecorator(o2);
 
         if(o1 instanceof BaseBullet && o2 instanceof BaseTank){
+            System.out.println(1);
             BaseTank tank = (BaseTank)o2;
             BaseBullet bullet = (BaseBullet)o1;
             /**

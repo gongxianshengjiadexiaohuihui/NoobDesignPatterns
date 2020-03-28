@@ -8,6 +8,7 @@ import com.ggp.firestrategy.FireStrategy;
 
 import java.awt.*;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @Author:GGP
@@ -15,6 +16,7 @@ import java.util.Random;
  * @Description:
  */
 public abstract class BaseTank extends GameObject {
+
     /**
      * 坦克方向
      */

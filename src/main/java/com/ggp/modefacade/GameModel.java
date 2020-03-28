@@ -11,7 +11,7 @@ import com.ggp.organ.Wall;
 
 import java.awt.*;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class GameModel implements Serializable {
     private BaseTank myTank = Config.gameFactory.createTank(200, 200,DirectionEnum.DOWN,GroupEnum.RED);
-    private List<GameObject> objects = new ArrayList<>();
+    private Map<UUID,GameObject> objects = new HashMap<>();
     private CollideChain chain  = new CollideChain();
 
     /**
@@ -51,19 +51,23 @@ public class GameModel implements Serializable {
          */
         this.collideCheck();
         myTank.paint(g);
-        for (int i = 0; i <objects.size() ; i++) {
-            objects.get(i).paint(g);
+        /**
+         * 避免ConcurrentModificationException
+         */
+        List<GameObject> temp = new ArrayList<>(objects.values());
+        for (int i = 0; i <temp.size() ; i++) {
+            temp.get(i).paint(g);
         }
-
     }
 
     /**
      * 碰撞检测
      */
     public void collideCheck(){
-        for (int i = 0; i <objects.size() ; i++) {
-            for (int j = i+1; j <objects.size() ; j++) {
-                  chain.collide(objects.get(i),objects.get(j));
+        List<GameObject> temp = new ArrayList<>(objects.values());
+        for (int i = 0; i <temp.size() ; i++) {
+            for (int j = i+1; j <temp.size() ; j++) {
+                  chain.collide(temp.get(i),temp.get(j));
             }
         }
     }
@@ -76,7 +80,7 @@ public class GameModel implements Serializable {
      * @param object
      */
     public void add(GameObject object){
-        objects.add(object);
+        objects.put(object.id,object);
     }
 
     /**
@@ -84,7 +88,7 @@ public class GameModel implements Serializable {
      * @param object
      */
     public void remove(GameObject object){
-        objects.remove(object);
+        objects.remove(object.id);
     }
 
     /**

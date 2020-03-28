@@ -2,6 +2,7 @@ package com.ggp.base;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * @Author:GGP
@@ -9,6 +10,10 @@ import java.io.Serializable;
  * @Description:  游戏物体的父类
  */
 public abstract class GameObject implements Serializable {
+    /**
+     * 物体id
+     */
+    public UUID id = UUID.randomUUID();
     /**
      * 物体坐标
      */
