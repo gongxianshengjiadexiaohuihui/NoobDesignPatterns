@@ -14,8 +14,8 @@ import com.ggp.decorator.GameObjectDecorator;
 public class BulletTankCollide implements Collide {
     @Override
     public void collide(GameObject o1, GameObject o2) {
-        removeDecorator(o1);
-        removeDecorator(o2);
+        o1 = removeDecorator(o1);
+        o2 = removeDecorator(o2);
 
         if(o1 instanceof BaseBullet && o2 instanceof BaseTank){
             BaseTank tank = (BaseTank)o2;
@@ -42,16 +42,15 @@ public class BulletTankCollide implements Collide {
         }
     }
 
-    //todo  未生效
     /**
      * 判断前去除装饰器
      * @param obj
      */
-    private void removeDecorator(Object obj){
-        if(!(obj instanceof GameObjectDecorator)){
-            return ;
-        }else{
-            removeDecorator(((GameObjectDecorator) obj).object);
+    private GameObject removeDecorator(GameObject obj){
+        if(obj instanceof GameObjectDecorator){
+            obj = ((GameObjectDecorator) obj).object;
+            removeDecorator(obj);
         }
+        return obj;
     }
 }
