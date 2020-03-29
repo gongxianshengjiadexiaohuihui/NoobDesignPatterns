@@ -17,11 +17,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("客户端收到的消息为："+msg);
-        Message message=  (Message)msg;
+        Message message= (Message)msg;
         if(message.getId().equals(Config.gameModel.getMainTank().id)){
             return;
         }
+        System.out.println("客户端收到的消息为："+msg);
         message.handle();
     }
 

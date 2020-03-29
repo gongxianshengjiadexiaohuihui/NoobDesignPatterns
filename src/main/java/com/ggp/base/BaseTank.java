@@ -117,14 +117,6 @@ public abstract class BaseTank extends GameObject {
         }
     }
 
-    /**
-     * 碰撞检测
-     *
-     * @param tank
-     */
-    public void collideWith(BaseTank tank) {
-
-    }
 
     /**
      * 旋转方向

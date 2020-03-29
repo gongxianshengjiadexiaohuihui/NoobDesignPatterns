@@ -94,6 +94,15 @@ public class GameModel implements Serializable {
     }
 
     /**
+     * 查找游戏物体
+     * @param id    物体的uuid
+     * @return
+     */
+    public GameObject find(UUID id){
+        return objects.get(id);
+    }
+
+    /**
      * 记录快照
      */
     public void save(){

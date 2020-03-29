@@ -1,6 +1,8 @@
 package com.ggp.net;
 
 import com.ggp.common.Constant;
+import com.ggp.net.message.MessageDecoder;
+import com.ggp.net.message.MessageEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -36,6 +38,8 @@ public class Server {
         serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
+                ch.pipeline().addLast(new MessageEncoder());
+                ch.pipeline().addLast(new MessageDecoder());
                 ch.pipeline().addLast(new ServerHandler());
             }
 

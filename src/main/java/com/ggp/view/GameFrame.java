@@ -4,6 +4,8 @@ import com.ggp.common.Config;
 import com.ggp.common.Constant;
 import com.ggp.common.enums.DirectionEnum;
 import com.ggp.modefacade.GameModel;
+import com.ggp.net.Client;
+import com.ggp.net.message.TankStopMessage;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -136,7 +138,8 @@ public class GameFrame extends Frame {
             /**
              * 判断是否移动
              */
-            if (!isL && !isR && !isU && !isD) {
+            if (!isL && !isR && !isU && !isD&&!model.getMainTank().moving) {
+                Client.INSTANCE.sendMsg(new TankStopMessage(model.getMainTank()));
                 model.getMainTank().moving = false;
             } else {
                 model.getMainTank().moving = true;

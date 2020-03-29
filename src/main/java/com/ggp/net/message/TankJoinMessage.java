@@ -6,6 +6,7 @@ import com.ggp.common.enums.DirectionEnum;
 import com.ggp.common.enums.GroupEnum;
 import com.ggp.common.enums.MessageTypeEnum;
 import com.ggp.modefacade.GameModel;
+import com.ggp.net.Client;
 
 import java.io.*;
 import java.util.UUID;
@@ -38,6 +39,7 @@ public class TankJoinMessage extends Message {
         BaseTank  tank =Config.gameFactory.createTank(this.x,this.y,this.dir,this.group);
         tank.name= this.name;
         GameModel.getInstance().add(tank);
+        Client.INSTANCE.sendMsg(new TankJoinMessage(Config.gameModel.getMainTank()));
     }
 
     @Override

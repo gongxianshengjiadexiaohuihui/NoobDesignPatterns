@@ -6,5 +6,5 @@ package com.ggp.common.enums;
  * @Description:
  */
 public enum MessageTypeEnum {
-    TANK_JOIN;
+    TANK_JOIN,TANK_STOP;
 }

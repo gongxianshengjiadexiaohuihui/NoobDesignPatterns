@@ -39,6 +39,9 @@ public class MessageDecoder extends ByteToMessageDecoder {
             case TANK_JOIN:
                 message = new TankJoinMessage();
                 break;
+            case TANK_STOP:
+                message = new TankStopMessage();
+                break;
             default:
                 throw new RuntimeException("不支持的消息类型:" + type);
         }
