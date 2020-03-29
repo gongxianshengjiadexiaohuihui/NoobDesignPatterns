@@ -1,5 +1,6 @@
 package com.ggp.net;
 
+import com.ggp.common.Config;
 import com.ggp.net.message.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
@@ -16,7 +17,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        Message message =(Message)msg;
+        System.out.println("客户端收到的消息为："+msg);
+        Message message=  (Message)msg;
+        if(message.getId().equals(Config.gameModel.getMainTank().id)){
+            return;
+        }
         message.handle();
     }
 

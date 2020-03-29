@@ -33,4 +33,12 @@ public abstract class Message {
      * @return
      */
     public abstract MessageTypeEnum getType();
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 }

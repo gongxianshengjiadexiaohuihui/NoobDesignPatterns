@@ -39,7 +39,6 @@ public class GameModel implements Serializable {
         for (int i = 0; i <enemy; i++) {
             this.add(Config.gameFactory.createTank(100*i,50*i,DirectionEnum.DOWN,GroupEnum.BLUE));
         }
-        myTank.name = "ggp";
         this.add(myTank);
             this.add(new Wall(450, 400));
             this.add(new Wall(510,400));

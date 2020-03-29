@@ -18,7 +18,8 @@ public class StartUp {
 
         new Thread(()-> new AudioManager("audio/war1.wav").loop()).start();
         new Thread(()->Client.INSTANCE.connect()).start();
-        Thread.sleep(100);
+        Thread.sleep(1000);
+        Config.gameModel.getMainTank().name="ggp";
         Client.INSTANCE.sendMsg(new TankJoinMessage(Config.gameModel.getMainTank()));
         while (true){
             Thread.sleep(100);

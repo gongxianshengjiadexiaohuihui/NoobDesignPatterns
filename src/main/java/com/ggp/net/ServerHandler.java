@@ -1,6 +1,5 @@
 package com.ggp.net;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -21,13 +20,10 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf byteBuf = (ByteBuf) msg;
-        byte[] result = new byte[byteBuf.readableBytes()];
-        byteBuf.readBytes(result);
         /**
          * 收到消息就转发给所有客户端
          */
-        ServerFrame.INSTANCE.append("客户端："+ctx.channel()+":发送消息:"+ new String(result));
+        ServerFrame.INSTANCE.append("客户端："+ctx.channel()+":发送消息:"+msg);
         Server.INSTANCE.clients.writeAndFlush(msg);
     }
 

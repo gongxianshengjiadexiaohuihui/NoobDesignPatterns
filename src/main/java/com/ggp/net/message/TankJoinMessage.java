@@ -8,6 +8,7 @@ import com.ggp.common.enums.MessageTypeEnum;
 import com.ggp.modefacade.GameModel;
 
 import java.io.*;
+import java.util.UUID;
 
 /**
  * @Author:GGP
@@ -19,6 +20,7 @@ public class TankJoinMessage extends Message {
     private int y;
     private DirectionEnum dir;
     private GroupEnum group;
+    private String name;
 
     public TankJoinMessage(){}
     public TankJoinMessage(BaseTank tank) {
@@ -26,12 +28,16 @@ public class TankJoinMessage extends Message {
         this.y = tank.y;
         this.dir = tank.dir;
         this.group = tank.groupEnum;
+        this.name = tank.name;
+        this.id=tank.id;
     }
 
 
     @Override
     public void handle() {
-        GameModel.getInstance().add(Config.gameFactory.createTank(this.x,this.y,this.dir,this.group));
+        BaseTank  tank =Config.gameFactory.createTank(this.x,this.y,this.dir,this.group);
+        tank.name= this.name;
+        GameModel.getInstance().add(tank);
     }
 
     @Override
@@ -43,6 +49,10 @@ public class TankJoinMessage extends Message {
             dos.writeInt(this.y);
             dos.writeInt(this.dir.ordinal());
             dos.writeInt(this.group.ordinal());
+            dos.writeUTF(this.name);
+            dos.writeLong(this.id.getMostSignificantBits());
+            dos.writeLong(this.id.getLeastSignificantBits());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,6 +67,8 @@ public class TankJoinMessage extends Message {
             this.y = dis.readInt();
             this.dir = DirectionEnum.values()[dis.readInt()];
             this.group = GroupEnum.values()[dis.readInt()];
+            this.name = dis.readUTF();
+            this.id = new UUID(dis.readLong(),dis.readLong());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,6 +87,7 @@ public class TankJoinMessage extends Message {
                 ", y=" + y +
                 ", dir=" + dir +
                 ", group=" + group +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

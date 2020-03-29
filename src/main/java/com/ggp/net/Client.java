@@ -53,6 +53,7 @@ public class Client {
         }
     }
     public void sendMsg(Message message){
+        System.out.println("客户端发送的消息为："+message);
         channel.writeAndFlush(message);
     }
 
